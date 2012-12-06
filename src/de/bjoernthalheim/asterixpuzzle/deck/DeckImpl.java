@@ -3,24 +3,30 @@ package de.bjoernthalheim.asterixpuzzle.deck;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation for a deck of cards.
+ * 
+ * @author bjoern
+ */
 public class DeckImpl implements Deck {
 
 	/**
 	 * The cards in the deck.
 	 */
 	private final List<Card> cards;
-	
+
 	/**
 	 * Instantiate the deck.
 	 */
 	public DeckImpl() {
 		this.cards = new ArrayList<Card>(9);
 	}
-	
+
 	/**
 	 * Add a specific card to the deck.
 	 * 
-	 * @param card The card which will be added.
+	 * @param card
+	 *            The card which will be added.
 	 */
 	public void addCard(Card card) {
 		this.cards.add(card);
@@ -28,6 +34,7 @@ public class DeckImpl implements Deck {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see de.bjoernthalheim.asterixpuzzle.deck.Deck#getCards()
 	 */
 	@Override

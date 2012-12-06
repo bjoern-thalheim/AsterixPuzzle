@@ -27,6 +27,7 @@ public class DeckCreator {
 	}
 
 	private void addCardToDeck(Deck result, String spec) {
-		result.addCard(new CardImpl(spec));
+		CardImpl card = new CardImpl(spec);
+		result.addCard(card);
 	}
 }

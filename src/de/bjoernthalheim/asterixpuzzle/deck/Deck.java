@@ -6,5 +6,5 @@ public interface Deck {
 
 	public List<Card> getCards();
 
-	public void addCard(Card card1);
+	public void addCard(Card card);
 }
