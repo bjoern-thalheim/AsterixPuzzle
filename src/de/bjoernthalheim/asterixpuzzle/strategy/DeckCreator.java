@@ -1,6 +1,5 @@
 package de.bjoernthalheim.asterixpuzzle.strategy;
 
-import de.bjoernthalheim.asterixpuzzle.deck.Card;
 import de.bjoernthalheim.asterixpuzzle.deck.CardImpl;
 import de.bjoernthalheim.asterixpuzzle.deck.Deck;
 import de.bjoernthalheim.asterixpuzzle.deck.DeckImpl;
