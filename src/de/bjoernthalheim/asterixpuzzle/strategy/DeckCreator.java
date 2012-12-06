@@ -14,8 +14,20 @@ public class DeckCreator {
 	 */
 	public Deck createNewDeck() {
 		Deck result = new DeckImpl();
-		Card card1 = new CardImpl("abmtotob");
-		result.addCard(card1);
+		addCardToDeck(result, "abmtotob");
+		addCardToDeck(result, "lbatltmb");
+		addCardToDeck(result, "obmtltab");
+		addCardToDeck(result, "obatmtlb");
+		addCardToDeck(result, "lbatotab");
+		addCardToDeck(result, "lbatotab");
+		addCardToDeck(result, "lbmtotab");
+		addCardToDeck(result, "lbmtatob");
+		addCardToDeck(result, "obmtatmb");
+		addCardToDeck(result, "obatltmb");
 		return result;
+	}
+
+	private void addCardToDeck(Deck result, String spec) {
+		result.addCard(new CardImpl(spec));
 	}
 }
