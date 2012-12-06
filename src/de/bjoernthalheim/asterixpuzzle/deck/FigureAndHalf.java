@@ -11,8 +11,13 @@ public class FigureAndHalf implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Figure figure;
-	private Half half;
+	private final Figure figure;
+	private final Half half;
+
+	public FigureAndHalf(Figure theFigure, Half theHalf) {
+		this.figure = theFigure;
+		this.half = theHalf;
+	}
 
 	public Figure getFigure() {
 		return this.figure;
