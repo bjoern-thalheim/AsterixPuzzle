@@ -1,4 +1,4 @@
-package de.bjoernthalheim.asterixpuzzle;
+package de.bjoernthalheim.asterixpuzzle.solution;
 
 /**
  * Enum with all four geographic directions. 

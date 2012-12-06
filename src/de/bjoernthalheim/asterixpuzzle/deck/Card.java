@@ -1,6 +1,6 @@
 package de.bjoernthalheim.asterixpuzzle.deck;
 
-import de.bjoernthalheim.asterixpuzzle.Orientation;
+import de.bjoernthalheim.asterixpuzzle.solution.Orientation;
 
 public interface Card {
 

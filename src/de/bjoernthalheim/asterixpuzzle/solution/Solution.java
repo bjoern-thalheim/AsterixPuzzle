@@ -1,4 +1,4 @@
-package de.bjoernthalheim.asterixpuzzle;
+package de.bjoernthalheim.asterixpuzzle.solution;
 
 import java.util.List;
 
