@@ -29,7 +29,8 @@ public class DeckImpl implements Deck {
 	 *            The card which will be added.
 	 */
 	public void addCard(Card card) {
-		this.cards.add(card);
+		CardImpl defensiveCopy = new CardImpl(card);
+		this.cards.add(defensiveCopy);
 	}
 
 	/*
@@ -39,7 +40,29 @@ public class DeckImpl implements Deck {
 	 */
 	@Override
 	public List<Card> getCards() {
-		return cards;
+		ArrayList<Card> defensiveCopy = new ArrayList<Card>(cards);
+		return defensiveCopy;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see de.bjoernthalheim.asterixpuzzle.deck.Deck#take(de.bjoernthalheim.asterixpuzzle.deck.Card)
+	 */
+	@Override
+	public void take(Card card) {
+		if (!cards.remove(card)) {
+			throw new IllegalArgumentException("Card " + card + " is not on this deck, so it can't be taken off");
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see de.bjoernthalheim.asterixpuzzle.deck.Deck#isEmpty()
+	 */
+	@Override
+	public boolean isEmpty() {
+		return this.cards.isEmpty();
 	}
 
 }

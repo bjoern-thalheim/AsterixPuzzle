@@ -5,10 +5,20 @@ import java.util.Map;
 
 import de.bjoernthalheim.asterixpuzzle.solution.Orientation;
 
+/**
+ * Implementation of a card.
+ * 
+ * @author bjoern
+ */
 public class CardImpl implements Card {
 	
 	Map<Orientation, FigureAndHalf> edges;
 
+	/**
+	 * Create a card accoringto the given spec.
+	 * 
+	 * @param spec A spec in the form (Figure/Orientation)^4, e.g. atOBMblT.
+	 */
 	public CardImpl(String spec) {
 		edges = new HashMap<Orientation, FigureAndHalf>();
 		String northSideSpec = spec.substring(0, 2);
@@ -19,6 +29,18 @@ public class CardImpl implements Card {
 		initEdge(eastSideSpec, Orientation.EAST);
 		initEdge(southSideSpec, Orientation.SOUTH);
 		initEdge(westSideSpec, Orientation.WEST);
+	}
+
+	/**
+	 * Create a copy of the given card.
+	 * 
+	 * @param card The card which shall be cloned.
+	 */
+	public CardImpl(Card card) {
+		Orientation[] orientations = Orientation.values();
+		for (Orientation orientation : orientations) {
+			edges.put(orientation, card.getEdge(orientation));			
+		}
 	}
 
 	/**
@@ -34,6 +56,10 @@ public class CardImpl implements Card {
 		edges.put(orientation , figureAndHalf);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.bjoernthalheim.asterixpuzzle.deck.Card#getEdge(de.bjoernthalheim.asterixpuzzle.solution.Orientation)
+	 */
 	@Override
 	public FigureAndHalf getEdge(Orientation orientation) {
 		return this.edges.get(orientation);
