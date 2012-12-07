@@ -26,4 +26,9 @@ public class FigureAndHalf implements Serializable {
 	public Half getHalf() {
 		return this.half;
 	}
+
+	@Override
+	public String toString() {
+		return "FigureAndHalf [figure=" + figure + ", half=" + half + "]";
+	}
 }
