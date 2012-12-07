@@ -1,7 +1,6 @@
 package de.bjoernthalheim.asterixpuzzle.strategy;
 
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 import de.bjoernthalheim.asterixpuzzle.deck.Card;
@@ -24,7 +23,8 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 		BrutForceSolutionFinderImpl impl = new BrutForceSolutionFinderImpl();
 		Deck deck = new DeckCreator().createNewDeck();
 		CardGrid grid = new ThreeTimesThreeCardGrid();
-		List<Solution> allSolutions = impl.findAllSolutions(deck, grid);
+		List<Solution> allSolutions = new ArrayList<Solution>();
+		impl.findAllSolutions(allSolutions, deck, grid);
 		for (Solution solution : allSolutions) {
 			System.out.println(solution);
 		}
@@ -35,8 +35,7 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 	 * empty slot on the grid. If the card fits, recurse further. If not, return an empty list.
 	 */
 	@Override
-	public List<Solution> findAllSolutions(Deck deck, CardGrid grid) {
-		// FIXME There should be an addAll() in here, shouldn't it?
+	public void findAllSolutions(List<Solution> solutions, Deck deck, CardGrid grid) {
 		for (Card card : deck.getCards()) {
 			deck.take(card);
 			Orientation[] orientations = Orientation.values();
@@ -44,13 +43,14 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 				if (grid.put(card, orientation)) {
 					if (deck.isEmpty()) {
 						Solution solution = new SolutionImpl(grid);
-						return Collections.singletonList(solution);
+						solutions.add(solution);
+					} else {
+						// recurse
+						findAllSolutions(solutions, deck, grid);
 					}
-					return findAllSolutions(deck, grid);
 				}
 			}
 		}
-		return Collections.emptyList();
 	}
 
 }

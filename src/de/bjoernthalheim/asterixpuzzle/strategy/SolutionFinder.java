@@ -8,5 +8,5 @@ import de.bjoernthalheim.asterixpuzzle.solution.Solution;
 
 public interface SolutionFinder {
 
-	public List<Solution> findAllSolutions(Deck deck, CardGrid grid);
+	void findAllSolutions(List<Solution> solutions, Deck deck, CardGrid grid);
 }
