@@ -13,5 +13,9 @@ Fourth, if I scan in the cards, I can try to visualize my solution with JavaFX o
 
 Outline
 
-The Idea of the brute force solution algorithm is that I start with a deck of cards,
-take one card from the deck,
+The Idea of the brute force solution algorithm is that I start with a deck of all cards and an empty grid and then recursively
+- take the next card from the deck
+- iterate over all orientations
+- put the card into the next free position in the grid
+- if no conflicts are in the grid, recurse further
+- otherwise, return an empty list. (because on this path no solution can be found.
