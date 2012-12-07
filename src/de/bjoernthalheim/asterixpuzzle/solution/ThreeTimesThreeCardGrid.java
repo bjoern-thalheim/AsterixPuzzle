@@ -14,7 +14,7 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 	 * @see de.bjoernthalheim.asterixpuzzle.solution.CardGrid#put(de.bjoernthalheim.asterixpuzzle.deck.Card, de.bjoernthalheim.asterixpuzzle.solution.Orientation)
 	 */
 	@Override
-	public boolean put(Card card, Orientation orientation) {
+	public boolean putOntoNextFreePositionSuccessful(Card card, Orientation orientation) {
 		return false;
 	}
 

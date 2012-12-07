@@ -66,4 +66,13 @@ public class CardImpl implements Card {
 		return this.edges.get(orientation);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "CardImpl [edges=" + edges + "]";
+	}
+
 }

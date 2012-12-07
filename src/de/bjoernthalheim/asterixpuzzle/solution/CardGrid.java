@@ -14,6 +14,6 @@ public interface CardGrid {
 	 * @return If it is possible to insert the given card with the given orientation onto the next free position of the
 	 *         grid.
 	 */
-	boolean put(Card card, Orientation orientation);
+	boolean putOntoNextFreePositionSuccessful(Card card, Orientation orientation);
 
 }
