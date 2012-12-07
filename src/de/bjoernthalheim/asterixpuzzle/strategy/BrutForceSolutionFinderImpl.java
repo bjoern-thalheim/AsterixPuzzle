@@ -21,10 +21,13 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 	 */
 	public static void main(String[] args) {
 		BrutForceSolutionFinderImpl impl = new BrutForceSolutionFinderImpl();
+		// init deck, grid and empty solution list.
 		Deck deck = new DeckCreator().createNewDeck();
 		CardGrid grid = new ThreeTimesThreeCardGrid();
 		List<Solution> allSolutions = new ArrayList<Solution>();
+		// recursion start.
 		impl.findAllSolutions(allSolutions, deck, grid);
+		// Soluton presentation.
 		for (Solution solution : allSolutions) {
 			System.out.println(solution);
 		}
@@ -38,18 +41,30 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 	public void findAllSolutions(List<Solution> solutions, Deck deck, CardGrid grid) {
 		for (Card card : deck.getCards()) {
 			deck.take(card);
-			Orientation[] orientations = Orientation.values();
-			for (Orientation orientation : orientations) {
-				if (grid.put(card, orientation)) {
-					if (deck.isEmpty()) {
-						Solution solution = new SolutionImpl(grid);
-						solutions.add(solution);
-					} else {
-						// recurse
-						findAllSolutions(solutions, deck, grid);
-					}
-				}
-			}
+			tryToFitCardIntoNextFreePosition(solutions, deck, grid, card);
+		}
+	}
+
+	private void tryToFitCardIntoNextFreePosition(List<Solution> solutions, Deck deck, CardGrid grid, Card card) {
+		for (Orientation orientation : Orientation.values()) {
+			fitCardWithPosition(solutions, deck, grid, card, orientation);
+		}
+	}
+
+	private void fitCardWithPosition(List<Solution> solutions, Deck deck, CardGrid grid, Card card,
+			Orientation orientation) {
+		if (grid.putOntoNextFreePositionSuccessful(card, orientation)) {
+			recurseOrRegisterSolution(solutions, deck, grid);
+		}
+	}
+
+	private void recurseOrRegisterSolution(List<Solution> solutions, Deck deck, CardGrid grid) {
+		if (deck.isEmpty()) {
+			Solution solution = new SolutionImpl(grid);
+			solutions.add(solution);
+		} else {
+			// recurse
+			findAllSolutions(solutions, deck, grid);
 		}
 	}
 
