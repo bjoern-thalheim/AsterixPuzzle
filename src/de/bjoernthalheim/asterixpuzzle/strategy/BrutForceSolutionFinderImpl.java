@@ -27,7 +27,8 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 		List<Solution> allSolutions = new ArrayList<Solution>();
 		// recursion start.
 		impl.findAllSolutions(allSolutions, deck, grid);
-		// Soluton presentation.
+		// Solution presentation.
+		System.out.println(allSolutions.size() + " solutions found: ");
 		for (Solution solution : allSolutions) {
 			System.out.println(solution);
 		}
