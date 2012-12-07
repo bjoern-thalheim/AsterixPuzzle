@@ -12,7 +12,7 @@ import de.bjoernthalheim.asterixpuzzle.solution.Orientation;
  */
 public class CardImpl implements Card {
 	
-	Map<Orientation, FigureAndHalf> edges;
+	private final Map<Orientation, FigureAndHalf> edges;
 
 	/**
 	 * Create a card accoringto the given spec.
@@ -37,9 +37,10 @@ public class CardImpl implements Card {
 	 * @param card The card which shall be cloned.
 	 */
 	public CardImpl(Card card) {
+		edges = new HashMap<Orientation, FigureAndHalf>();
 		Orientation[] orientations = Orientation.values();
 		for (Orientation orientation : orientations) {
-			edges.put(orientation, card.getEdge(orientation));			
+			edges.put(orientation, card.getEdge(orientation));
 		}
 	}
 
