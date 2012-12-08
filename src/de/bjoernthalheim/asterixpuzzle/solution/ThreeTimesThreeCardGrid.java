@@ -55,13 +55,7 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 	private boolean conflictWithNeighbor(int x, int y, CardAndOrientation cardAndOrientation, Orientation orientation) {
 		FigureAndHalf other = findNeighbor(x,y,orientation);
 		FigureAndHalf self = cardAndOrientation.getEdge(orientation);
-		return cardsFit(other, self);
-	}
-
-	private boolean cardsFit(FigureAndHalf other, FigureAndHalf self) {
-		boolean differentHalf = !self.getHalf().equals(other.getHalf());
-		boolean sameFigure = self.getFigure().equals(other.getFigure());
-		return sameFigure && differentHalf;
+		return self.fits(other);
 	}
 
 	private FigureAndHalf findNeighbor(int x, int y, Orientation orientation) {
