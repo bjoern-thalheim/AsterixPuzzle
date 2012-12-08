@@ -29,11 +29,6 @@ public class FigureAndHalf implements Serializable {
 		return this.half;
 	}
 
-	@Override
-	public String toString() {
-		return "FigureAndHalf [figure=" + figure + ", half=" + half + "]";
-	}
-
 	/**
 	 * Check whether this {@link FigureAndHalf} fits onto the {@link FigureAndHalf} given.
 	 * 
@@ -77,5 +72,10 @@ public class FigureAndHalf implements Serializable {
 		if (half != other.half)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "FigureAndHalf [figure=" + figure + ", half=" + half + "]";
 	}
 }
