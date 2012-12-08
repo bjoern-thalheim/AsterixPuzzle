@@ -11,13 +11,24 @@ import de.bjoernthalheim.asterixpuzzle.solution.Orientation;
  * @author bjoern
  */
 public class CardImpl implements Card {
-	
+
+	public static final CardImpl NOTHING;
+
+	static {
+		NOTHING = new CardImpl();
+		NOTHING.edges.put(Orientation.NORTH, FigureAndHalf.NOTHING);
+		NOTHING.edges.put(Orientation.EAST, FigureAndHalf.NOTHING);
+		NOTHING.edges.put(Orientation.SOUTH, FigureAndHalf.NOTHING);
+		NOTHING.edges.put(Orientation.WEST, FigureAndHalf.NOTHING);
+	}
+
 	private final Map<Orientation, FigureAndHalf> edges;
 
 	/**
 	 * Create a card accoringto the given spec.
 	 * 
-	 * @param spec A spec in the form (Figure/Orientation)^4, e.g. atOBMblT.
+	 * @param spec
+	 *            A spec in the form (Figure/Orientation)^4, e.g. atOBMblT.
 	 */
 	public CardImpl(String spec) {
 		edges = new HashMap<Orientation, FigureAndHalf>();
@@ -34,7 +45,8 @@ public class CardImpl implements Card {
 	/**
 	 * Create a copy of the given card.
 	 * 
-	 * @param card The card which shall be cloned.
+	 * @param card
+	 *            The card which shall be cloned.
 	 */
 	public CardImpl(Card card) {
 		edges = new HashMap<Orientation, FigureAndHalf>();
@@ -44,21 +56,28 @@ public class CardImpl implements Card {
 		}
 	}
 
+	private CardImpl() {
+		edges = new HashMap<Orientation, FigureAndHalf>();
+	}
+
 	/**
 	 * Init the edge according to the given String.
 	 * 
-	 * @param spec The spec containing two chars for Figure/Half.
-	 * @param orientation The side of the card where the given figure and half shall be in.
+	 * @param spec
+	 *            The spec containing two chars for Figure/Half.
+	 * @param orientation
+	 *            The side of the card where the given figure and half shall be in.
 	 */
 	private void initEdge(String spec, Orientation orientation) {
 		Figure figure = Figure.fromChar(spec.charAt(0));
 		Half half = Half.fromChar(spec.charAt(1));
 		FigureAndHalf figureAndHalf = new FigureAndHalf(figure, half);
-		edges.put(orientation , figureAndHalf);
+		edges.put(orientation, figureAndHalf);
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see de.bjoernthalheim.asterixpuzzle.deck.Card#getEdge(de.bjoernthalheim.asterixpuzzle.solution.Orientation)
 	 */
 	@Override
@@ -68,6 +87,7 @@ public class CardImpl implements Card {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
