@@ -11,6 +11,8 @@ public class FigureAndHalf implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	public static final FigureAndHalf NOTHING = new FigureAndHalf(Figure.NOTHING, Half.NOTHING);
+
 	private final Figure figure;
 	private final Half half;
 
@@ -40,8 +42,40 @@ public class FigureAndHalf implements Serializable {
 	 * @return <code>true</code> if these two {@link FigureAndHalf} can be fitted this way.
 	 */
 	public boolean fits(FigureAndHalf other) {
+		if (isNothing(this) || isNothing(other)) {
+			return true;
+		}
 		boolean differentHalf = !this.getHalf().equals(other.getHalf());
 		boolean sameFigure = this.getFigure().equals(other.getFigure());
 		return sameFigure && differentHalf;
+	}
+
+	private boolean isNothing(FigureAndHalf figureAndHalf) {
+		return FigureAndHalf.NOTHING.equals(figureAndHalf);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((figure == null) ? 0 : figure.hashCode());
+		result = prime * result + ((half == null) ? 0 : half.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FigureAndHalf other = (FigureAndHalf) obj;
+		if (figure != other.figure)
+			return false;
+		if (half != other.half)
+			return false;
+		return true;
 	}
 }

@@ -6,9 +6,16 @@ package de.bjoernthalheim.asterixpuzzle.deck;
  * @author bjoern
  */
 public enum Half {
-	
-	TOP, BOTTOM;
 
+	/**
+	 * Normal values.
+	 */
+	TOP, BOTTOM,
+
+	/**
+	 * Null value to represent no card.
+	 */
+	NOTHING;
 
 	/**
 	 * To enable shortcut instantiation, this method was created.

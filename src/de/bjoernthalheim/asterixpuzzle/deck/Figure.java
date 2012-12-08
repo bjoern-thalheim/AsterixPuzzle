@@ -7,7 +7,15 @@ package de.bjoernthalheim.asterixpuzzle.deck;
  */
 public enum Figure {
 
-	ASTERIX, OBELIX, MIRACULIX, LEGIONAIRE, ;
+	/**
+	 * Normal values.
+	 */
+	ASTERIX, OBELIX, MIRACULIX, LEGIONAIRE,
+
+	/**
+	 * Null value to represent no card.
+	 */
+	NOTHING;
 
 	/**
 	 * To enable shortcut instantiation, this method was created.
