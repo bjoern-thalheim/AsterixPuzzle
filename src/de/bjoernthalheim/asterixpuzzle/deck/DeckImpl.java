@@ -65,4 +65,9 @@ public class DeckImpl implements Deck {
 		return this.cards.isEmpty();
 	}
 
+	@Override
+	public void putBack(Card card) {
+		this.cards.add(card);
+	}
+
 }

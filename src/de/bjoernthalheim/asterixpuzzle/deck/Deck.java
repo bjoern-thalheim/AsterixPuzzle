@@ -38,4 +38,11 @@ public interface Deck {
 	 * @return If no card remains on the deck.
 	 */
 	public boolean isEmpty();
+
+	/**
+	 * Put a card back on the deck.
+	 * 
+	 * @param card The card which shall be put back.
+	 */
+	public void putBack(Card card);
 }

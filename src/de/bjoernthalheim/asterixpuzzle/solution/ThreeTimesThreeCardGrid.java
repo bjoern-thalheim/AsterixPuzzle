@@ -64,7 +64,7 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 	private boolean conflictWithNeighbor(int x, int y, CardAndOrientation cardAndOrientation, Orientation orientation) {
 		FigureAndHalf other = findNeighbor(x, y, orientation);
 		FigureAndHalf self = cardAndOrientation.getEdge(orientation);
-		return self.fits(other);
+		return !self.fits(other);
 	}
 
 	private FigureAndHalf findNeighbor(int x, int y, Orientation orientation) {
@@ -92,7 +92,7 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 		if (yn < 0 || yn >= EDGELENGTH) {
 			return FigureAndHalf.NOTHING;
 		}
-		return this.cardsInGrid[x][y].getEdge(orientation.opposite());
+		return this.cardsInGrid[xn][yn].getEdge(orientation.opposite());
 	}
 
 }
