@@ -78,4 +78,8 @@ public class FigureAndHalf implements Serializable {
 	public String toString() {
 		return "FigureAndHalf [figure=" + figure + ", half=" + half + "]";
 	}
+
+	public String toShortString() {
+		return figure.toShortString() + half.toShortString();
+	}
 }

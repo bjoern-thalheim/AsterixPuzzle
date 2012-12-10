@@ -37,12 +37,12 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 	public boolean putOntoNextFreePositionSuccessful(Card card, Orientation orientation) {
 		// use div/mod positioncounter to determine next field.
 		CardAndOrientation cardAndOrientation = new CardAndOrientation(card, orientation);
-		int x = positionCounter % EDGELENGTH;
-		int y = positionCounter / EDGELENGTH;
+		int x = getXPosition(positionCounter);
+		int y = getYPosition(positionCounter);
 		// Find all four neighbors and check for conflicts.
-		if (!conflictsWithNeighbors(x, y, cardAndOrientation)) {
+		if (!conflictsWithNeighbors(y, x, cardAndOrientation)) {
 			// if no conflict, add the CardAndOrientation into the grid and return true,.
-			this.cardsInGrid[x][y] = cardAndOrientation;
+			this.cardsInGrid[y][x] = cardAndOrientation;
 			positionCounter++;
 			return true;
 		}
@@ -50,10 +50,10 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 		return false;
 	}
 
-	private boolean conflictsWithNeighbors(int x, int y, CardAndOrientation cardAndOrientation) {
+	private boolean conflictsWithNeighbors(int y, int x, CardAndOrientation cardAndOrientation) {
 		Orientation[] orientations = Orientation.values();
 		for (Orientation orientation : orientations) {
-			if (conflictWithNeighbor(x, y, cardAndOrientation, orientation)) {
+			if (conflictWithNeighbor(y, x, cardAndOrientation, orientation)) {
 				return true;
 			}
 		}
@@ -61,13 +61,13 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 		return false;
 	}
 
-	private boolean conflictWithNeighbor(int x, int y, CardAndOrientation cardAndOrientation, Orientation orientation) {
-		FigureAndHalf other = findNeighbor(x, y, orientation);
+	private boolean conflictWithNeighbor(int y, int x, CardAndOrientation cardAndOrientation, Orientation orientation) {
+		FigureAndHalf other = findNeighbor(y, x, orientation);
 		FigureAndHalf self = cardAndOrientation.getEdge(orientation);
 		return !self.fits(other);
 	}
 
-	private FigureAndHalf findNeighbor(int x, int y, Orientation orientation) {
+	private FigureAndHalf findNeighbor(int y, int x, Orientation orientation) {
 		int xn = x;
 		int yn = y;
 		switch (orientation) {
@@ -92,7 +92,45 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 		if (yn < 0 || yn >= EDGELENGTH) {
 			return FigureAndHalf.NOTHING;
 		}
-		return this.cardsInGrid[xn][yn].getEdge(orientation.opposite());
+		return this.cardsInGrid[yn][xn].getEdge(orientation.opposite());
+	}
+
+	@Override
+	public CardGrid defensiveCopy() {
+		ThreeTimesThreeCardGrid result = new ThreeTimesThreeCardGrid();
+		for (int counter = 0; counter < EDGELENGTH*EDGELENGTH; counter++) {
+			int x = getXPosition(counter);
+			int y = getYPosition(counter);
+			CardAndOrientation cell = cardsInGrid[y][x];
+			if (!result.putOntoNextFreePositionSuccessful(cell.getCard(), cell.getOrientation())) {
+				throw new RuntimeException(
+						"Totally unexpected: yould not put card from a valid grid into a new grid.");
+			}
+		}
+		result.positionCounter = this.positionCounter;
+		return result;
+	}
+
+	private int getYPosition(int counter) {
+		return counter / EDGELENGTH;
+	}
+
+	private int getXPosition(int counter) {
+		return counter % EDGELENGTH;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuffer result = new StringBuffer();
+		result.append("Position: " + positionCounter + "\n");
+		for (CardAndOrientation[] line : this.cardsInGrid) {
+			result.append("[");
+			for (CardAndOrientation cardAndOrientation : line) {
+				result.append(cardAndOrientation + ", ");
+			}
+			result.append("]\n");
+		}
+		return result.toString();
 	}
 
 }

@@ -70,4 +70,17 @@ public class DeckImpl implements Deck {
 		this.cards.add(card);
 	}
 
+	@Override
+	public Deck defensiveCopy() {
+		Deck deck = new DeckImpl();
+		for (Card card : this.cards) {
+			deck.addCard(card);
+		}
+		return deck;
+	}
+	
+	@Override
+	public String toString() {
+		return this.cards.size() + " " + this.cards.toString();
+	}
 }

@@ -26,11 +26,15 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 		CardGrid grid = new ThreeTimesThreeCardGrid();
 		List<Solution> allSolutions = new ArrayList<Solution>();
 		// recursion start.
-		impl.findAllSolutions(allSolutions, deck, grid);
-		// Solution presentation.
-		System.out.println(allSolutions.size() + " solutions found: ");
-		for (Solution solution : allSolutions) {
-			System.out.println(solution);
+		try {
+			// FIXME - the rotation of the cards needs to be put into the recursion as well to recurse better!
+			impl.findAllSolutions(allSolutions, deck, grid);
+		} finally {
+			// Solution presentation.
+			System.out.println(allSolutions.size() + " solutions found: ");
+			for (Solution solution : allSolutions) {
+				System.out.println(solution);
+			}
 		}
 	}
 
@@ -42,21 +46,28 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 	public void findAllSolutions(List<Solution> solutions, Deck deck, CardGrid grid) {
 		for (Card card : deck.getCards()) {
 			deck.take(card);
-			tryToFitCardIntoNextFreePosition(solutions, deck, grid, card);
+			if (!cardFitsIntoNextPosition(solutions, deck, grid, card)) {
+				deck.putBack(card);
+			}
+			deck.putBack(card);
 		}
 	}
 
-	private void tryToFitCardIntoNextFreePosition(List<Solution> solutions, Deck deck, CardGrid grid, Card card) {
+	private boolean cardFitsIntoNextPosition(List<Solution> solutions, Deck deck, CardGrid grid, Card card) {
+		boolean cardFitsAnyhow = false;
 		for (Orientation orientation : Orientation.values()) {
-			fitCardWithPosition(solutions, deck, grid, card, orientation);
+			cardFitsAnyhow |= fitCardWithPosition(solutions, deck, grid, card, orientation);
 		}
+		return cardFitsAnyhow;
 	}
 
-	private void fitCardWithPosition(List<Solution> solutions, Deck deck, CardGrid grid, Card card,
+	private boolean fitCardWithPosition(List<Solution> solutions, Deck deck, CardGrid grid, Card card,
 			Orientation orientation) {
 		if (grid.putOntoNextFreePositionSuccessful(card, orientation)) {
 			recurseOrRegisterSolution(solutions, deck, grid);
+			return deck.isEmpty();
 		}
+		return false;
 	}
 
 	private void recurseOrRegisterSolution(List<Solution> solutions, Deck deck, CardGrid grid) {
@@ -65,7 +76,7 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 			solutions.add(solution);
 		} else {
 			// recurse
-			findAllSolutions(solutions, deck, grid);
+			findAllSolutions(solutions, deck.defensiveCopy(), grid.defensiveCopy());
 		}
 	}
 

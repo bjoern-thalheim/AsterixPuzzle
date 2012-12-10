@@ -45,4 +45,11 @@ public interface Deck {
 	 * @param card The card which shall be put back.
 	 */
 	public void putBack(Card card);
+
+	/**
+	 * Create a clone of this deck.
+	 * 
+	 * @return a clone of this deck.
+	 */
+	public Deck defensiveCopy();
 }

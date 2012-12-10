@@ -28,4 +28,16 @@ public class CardAndOrientation {
 	public FigureAndHalf getEdge(Orientation orientation) {
 		return card.getEdge(orientation.rotate(rotation));
 	}
+
+	@Override
+	public String toString() {
+		StringBuffer result = new StringBuffer();
+		for (Orientation orientation : Orientation.values()) {
+			FigureAndHalf edge = card.getEdge(orientation.rotate(rotation));
+			result.append(edge.toShortString());
+		}
+		return result.toString();
+	}
+	
+	
 }

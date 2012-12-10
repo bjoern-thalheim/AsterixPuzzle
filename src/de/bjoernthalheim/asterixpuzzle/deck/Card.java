@@ -11,4 +11,5 @@ public interface Card {
 	 * @return The Figure and the Half of that side of the card.
 	 */
 	public FigureAndHalf getEdge(Orientation orientation);
+
 }

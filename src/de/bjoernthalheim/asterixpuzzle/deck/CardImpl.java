@@ -92,7 +92,12 @@ public class CardImpl implements Card {
 	 */
 	@Override
 	public String toString() {
-		return "CardImpl [edges=" + edges + "]";
+		StringBuffer result = new StringBuffer();
+		for (Orientation orientation : Orientation.values()) {
+			FigureAndHalf edge = this.getEdge(orientation);
+			result.append(edge.toShortString());
+		}
+		return result.toString();
 	}
 
 }

@@ -16,4 +16,11 @@ public interface CardGrid {
 	 */
 	boolean putOntoNextFreePositionSuccessful(Card card, Orientation orientation);
 
+	/**
+	 * Create a copy of this grid.
+	 * 
+	 * @return A copy of this grid.
+	 */
+	CardGrid defensiveCopy();
+
 }

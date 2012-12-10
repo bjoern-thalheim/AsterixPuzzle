@@ -36,4 +36,8 @@ public enum Half {
 			throw new RuntimeException("Unknown spec: " + spec);
 		}
 	}
+
+	public String toShortString() {
+		return this.toString().substring(0,1);
+	}
 }

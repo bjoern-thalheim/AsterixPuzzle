@@ -44,4 +44,7 @@ public enum Figure {
 		}
 	}
 
+	public String toShortString() {
+		return this.toString().substring(0, 1);
+	}
 }
