@@ -66,11 +66,6 @@ public class DeckImpl implements Deck {
 	}
 
 	@Override
-	public void putBack(Card card) {
-		this.cards.add(card);
-	}
-
-	@Override
 	public Deck defensiveCopy() {
 		Deck deck = new DeckImpl();
 		for (Card card : this.cards) {

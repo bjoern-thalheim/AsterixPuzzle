@@ -40,13 +40,6 @@ public interface Deck {
 	public boolean isEmpty();
 
 	/**
-	 * Put a card back on the deck.
-	 * 
-	 * @param card The card which shall be put back.
-	 */
-	public void putBack(Card card);
-
-	/**
 	 * Create a clone of this deck.
 	 * 
 	 * @return a clone of this deck.

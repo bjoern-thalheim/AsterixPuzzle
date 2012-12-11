@@ -46,28 +46,21 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 	public void findAllSolutions(List<Solution> solutions, Deck deck, CardGrid grid) {
 		for (Card card : deck.getCards()) {
 			deck.take(card);
-			if (!cardFitsIntoNextPosition(solutions, deck, grid, card)) {
-				deck.putBack(card);
-			}
-			deck.putBack(card);
+			cardFitsIntoNextPosition(solutions, deck, grid, card);
 		}
 	}
 
-	private boolean cardFitsIntoNextPosition(List<Solution> solutions, Deck deck, CardGrid grid, Card card) {
-		boolean cardFitsAnyhow = false;
+	private void cardFitsIntoNextPosition(List<Solution> solutions, Deck deck, CardGrid grid, Card card) {
 		for (Orientation orientation : Orientation.values()) {
-			cardFitsAnyhow |= fitCardWithPosition(solutions, deck, grid, card, orientation);
+			fitCardWithPosition(solutions, deck, grid, card, orientation);
 		}
-		return cardFitsAnyhow;
 	}
 
-	private boolean fitCardWithPosition(List<Solution> solutions, Deck deck, CardGrid grid, Card card,
+	private void fitCardWithPosition(List<Solution> solutions, Deck deck, CardGrid grid, Card card,
 			Orientation orientation) {
 		if (grid.putOntoNextFreePositionSuccessful(card, orientation)) {
 			recurseOrRegisterSolution(solutions, deck, grid);
-			return deck.isEmpty();
 		}
-		return false;
 	}
 
 	private void recurseOrRegisterSolution(List<Solution> solutions, Deck deck, CardGrid grid) {
