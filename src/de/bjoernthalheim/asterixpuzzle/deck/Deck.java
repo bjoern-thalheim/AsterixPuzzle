@@ -33,13 +33,6 @@ public interface Deck {
 	public void take(Card card);
 
 	/**
-	 * Tell if no cards are left on the deck.
-	 * 
-	 * @return If no card remains on the deck.
-	 */
-	public boolean isEmpty();
-
-	/**
 	 * Create a clone of this deck.
 	 * 
 	 * @return a clone of this deck.

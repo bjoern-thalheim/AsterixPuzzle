@@ -56,15 +56,6 @@ public class DeckImpl implements Deck {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see de.bjoernthalheim.asterixpuzzle.deck.Deck#isEmpty()
-	 */
-	@Override
-	public boolean isEmpty() {
-		return this.cards.isEmpty();
-	}
-
 	@Override
 	public Deck defensiveCopy() {
 		Deck deck = new DeckImpl();

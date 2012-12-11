@@ -1,5 +1,8 @@
 package de.bjoernthalheim.asterixpuzzle.solution;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import de.bjoernthalheim.asterixpuzzle.deck.Card;
 import de.bjoernthalheim.asterixpuzzle.deck.FigureAndHalf;
 
@@ -132,5 +135,23 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 		}
 		return result.toString();
 	}
+	
+	@Override
+	public boolean isFull() {
+		return this.positionCounter == 9;
+	}
 
+	@Override
+	public List<PositionAndOrientationAndCard> getCards() {
+		int positions = EDGELENGTH*EDGELENGTH;
+		ArrayList<PositionAndOrientationAndCard> result = new ArrayList<PositionAndOrientationAndCard>(positions);
+		for (int i = 0; i < positions; i++) {
+			int x = getXPosition(i);
+			int y = getYPosition(i);
+			CardAndOrientation card = this.cardsInGrid[y][x];
+			PositionAndOrientationAndCard item = new PositionAndOrientationAndCard(i, card);
+			result.add(item);
+		}
+		return result;
+	}
 }

@@ -1,20 +1,23 @@
 package de.bjoernthalheim.asterixpuzzle.solution;
 
-import java.util.Collections;
-import java.util.List;
-
 /**
  * @author bjoern
  */
 public class SolutionImpl implements Solution {
 
+	private CardGrid solutionCopy;
+
 	public SolutionImpl(CardGrid grid) {
-		// TODO Auto-generated constructor stub
+		solutionCopy = grid.defensiveCopy();
 	}
 
 	@Override
-	public List<PositionAndOrientationAndCard> getItems() {
-		return Collections.emptyList();
-	}
+	public String toString() {
+		StringBuffer result = new StringBuffer();
+		for (PositionAndOrientationAndCard item : solutionCopy.getCards()) {
+			result.append(item.getPosition() + ": " + item.getCardAndOrientation().toString() + ", ");
 
+		}
+		return result.toString();
+	}
 }

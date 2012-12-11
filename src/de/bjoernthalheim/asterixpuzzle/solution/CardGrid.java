@@ -1,5 +1,7 @@
 package de.bjoernthalheim.asterixpuzzle.solution;
 
+import java.util.List;
+
 import de.bjoernthalheim.asterixpuzzle.deck.Card;
 
 public interface CardGrid {
@@ -22,5 +24,19 @@ public interface CardGrid {
 	 * @return A copy of this grid.
 	 */
 	CardGrid defensiveCopy();
+
+	/**
+	 * Tell if all blank spaces in the grid have been filled.
+	 * 
+	 * @return <code>true</code> if all blank spaces have been filled - this means we found a solution.
+	 */
+	boolean isFull();
+
+	/**
+	 * Provide the current grid cards.
+	 * 
+	 * @return the current state of the grid.
+	 */
+	List<PositionAndOrientationAndCard> getCards();
 
 }
