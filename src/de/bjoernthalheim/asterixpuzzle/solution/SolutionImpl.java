@@ -16,7 +16,6 @@ public class SolutionImpl implements Solution {
 		StringBuffer result = new StringBuffer();
 		for (PositionAndOrientationAndCard item : solutionCopy.getCards()) {
 			result.append(item.getPosition() + ": " + item.getCardAndOrientation().toString() + ", ");
-
 		}
 		return result.toString();
 	}
