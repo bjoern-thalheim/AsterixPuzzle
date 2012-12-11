@@ -100,4 +100,29 @@ public class CardImpl implements Card {
 		return result.toString();
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((edges == null) ? 0 : edges.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CardImpl other = (CardImpl) obj;
+		if (edges == null) {
+			if (other.edges != null)
+				return false;
+		} else if (!edges.equals(other.edges))
+			return false;
+		return true;
+	}
+
 }
