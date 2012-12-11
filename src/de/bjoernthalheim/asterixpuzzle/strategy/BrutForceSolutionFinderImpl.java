@@ -17,35 +17,19 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 	 */
 	@Override
 	public void findAllSolutions(List<Solution> solutions, Deck deck, CardGrid grid) {
-		Deck deckClone = deck.defensiveCopy();
-		for (Card card : deckClone.getCards()) {
-			deckClone.take(card);
-			cardFitsIntoNextPosition(solutions, deckClone.defensiveCopy(), grid, card);
+		for (Card card : deck.getCards()) {
+			Deck deckCopy = deck.defensiveCopy();
+			deckCopy.take(card);
+			for (Orientation orientation : Orientation.values()) {
+				CardGrid gridCopy = grid.defensiveCopy();
+				if (gridCopy.putOntoNextFreePositionSuccessful(card, orientation)) {
+					if (gridCopy.isFull()) {
+						solutions.add(new SolutionImpl(gridCopy));
+					} else {
+						findAllSolutions(solutions, deckCopy, gridCopy);
+					}
+				}
+			}
 		}
 	}
-
-	private void cardFitsIntoNextPosition(List<Solution> solutions, Deck deck, CardGrid grid, Card card) {
-		for (Orientation orientation : Orientation.values()) {
-			fitCardWithPosition(solutions, deck, grid, card, orientation);
-		}
-	}
-
-	private void fitCardWithPosition(List<Solution> solutions, Deck deck, CardGrid grid, Card card,
-			Orientation orientation) {
-		CardGrid gridClone = grid.defensiveCopy();
-		if (gridClone.putOntoNextFreePositionSuccessful(card, orientation)) {
-			recurseOrRegisterSolution(solutions, deck, gridClone);
-		}
-	}
-
-	private void recurseOrRegisterSolution(List<Solution> solutions, Deck deck, CardGrid grid) {
-		if (grid.isFull()) {
-			Solution solution = new SolutionImpl(grid);
-			solutions.add(solution);
-		} else {
-			// recurse
-			findAllSolutions(solutions, deck, grid);
-		}
-	}
-
 }
