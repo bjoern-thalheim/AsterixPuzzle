@@ -62,6 +62,44 @@ public class BrutForceSolutionFinderImplTest {
 					+ secondCard.getOrientation();
 			return firstPart + secondPart;
 		}
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + getOuterType().hashCode();
+			result = prime * result + ((firstCard == null) ? 0 : firstCard.hashCode());
+			result = prime * result + ((secondCard == null) ? 0 : secondCard.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Test2By1Grid other = (Test2By1Grid) obj;
+			if (!getOuterType().equals(other.getOuterType()))
+				return false;
+			if (firstCard == null) {
+				if (other.firstCard != null)
+					return false;
+			} else if (!firstCard.equals(other.firstCard))
+				return false;
+			if (secondCard == null) {
+				if (other.secondCard != null)
+					return false;
+			} else if (!secondCard.equals(other.secondCard))
+				return false;
+			return true;
+		}
+
+		private BrutForceSolutionFinderImplTest getOuterType() {
+			return BrutForceSolutionFinderImplTest.this;
+		}
 	}
 
 	/**
@@ -82,9 +120,10 @@ public class BrutForceSolutionFinderImplTest {
 		deck.addCard(new CardImpl("abababab"));
 		List<Solution> solutions = new ArrayList<Solution>(1);
 		strategy.findAllSolutions(solutions, deck, grid);
+		solutions = strategy.removeIsomorphicSolutions(solutions);
 		// cards fit 2(first/second Position)*4x4(per position two times all orientations) times, as long as isomorphic
 		// solutions are not filtered out.
-		assertEquals(grid.toString(), 32, solutions.size());
+		assertEquals(grid.toString(), 2, solutions.size());
 	}
 
 	@Test
@@ -95,6 +134,7 @@ public class BrutForceSolutionFinderImplTest {
 		deck.addCard(new CardImpl("abmtmtmt"));
 		List<Solution> solutions = new ArrayList<Solution>(1);
 		strategy.findAllSolutions(solutions, deck, grid);
-		assertEquals(solutions.toString(), 2, solutions.size());
+		solutions = strategy.removeIsomorphicSolutions(solutions); 
+		assertEquals(solutions.toString(), 1, solutions.size());
 	}
 }

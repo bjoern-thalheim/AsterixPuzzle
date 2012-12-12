@@ -1,5 +1,6 @@
 package de.bjoernthalheim.asterixpuzzle.strategy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.bjoernthalheim.asterixpuzzle.deck.Card;
@@ -31,5 +32,39 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 				}
 			}
 		}
+	}
+
+	@Override
+	public List<Solution> removeIsomorphicSolutions(List<Solution> solutions) {
+		List<Solution> result = new ArrayList<Solution>();
+		for (Solution solution : solutions) {
+			if (!containsIsomorphicSolutions(result, solution)) {
+				result.add(solution);
+			}
+		}
+		return result;
+	}
+
+	private boolean containsIsomorphicSolutions(List<Solution> result, Solution solutionToInsert) {
+		for (Solution solution : result) {
+			if (isIsomorphic(solution, solutionToInsert)) {
+				return true;
+			}
+		}
+		// no conflicts found
+		return false;
+	}
+
+	private boolean isIsomorphic(Solution solution, Solution solutionToInsert) {
+		for (Orientation orientation : Orientation.values()) {
+			if (translate(solution, orientation).equals(solutionToInsert)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private Solution translate(Solution solution, Orientation orientation) {
+		return solution;
 	}
 }
