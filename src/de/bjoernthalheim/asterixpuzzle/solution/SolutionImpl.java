@@ -1,22 +1,20 @@
 package de.bjoernthalheim.asterixpuzzle.solution;
 
 /**
+ * A solution is merely a full grid.
+ * 
  * @author bjoern
  */
 public class SolutionImpl implements Solution {
 
-	private CardGrid solutionCopy;
+	private CardGrid solutionGrid;
 
 	public SolutionImpl(CardGrid grid) {
-		solutionCopy = grid.defensiveCopy();
+		solutionGrid = grid;
 	}
 
 	@Override
 	public String toString() {
-		StringBuffer result = new StringBuffer();
-		for (PositionAndOrientationAndCard item : solutionCopy.getCards()) {
-			result.append(item.getPosition() + ": " + item.getCardAndOrientation().toString() + ", ");
-		}
-		return result.toString();
+		return solutionGrid.toString();
 	}
 }

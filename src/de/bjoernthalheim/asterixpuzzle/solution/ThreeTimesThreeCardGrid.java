@@ -1,8 +1,5 @@
 package de.bjoernthalheim.asterixpuzzle.solution;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import de.bjoernthalheim.asterixpuzzle.deck.Card;
 import de.bjoernthalheim.asterixpuzzle.deck.FigureAndHalf;
 
@@ -101,13 +98,12 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 	@Override
 	public CardGrid defensiveCopy() {
 		ThreeTimesThreeCardGrid result = new ThreeTimesThreeCardGrid();
-		for (int counter = 0; counter < EDGELENGTH*EDGELENGTH; counter++) {
+		for (int counter = 0; counter < EDGELENGTH * EDGELENGTH; counter++) {
 			int x = getXPosition(counter);
 			int y = getYPosition(counter);
 			CardAndOrientation cell = cardsInGrid[y][x];
 			if (!result.putOntoNextFreePositionSuccessful(cell.getCard(), cell.getOrientation())) {
-				throw new RuntimeException(
-						"Totally unexpected: yould not put card from a valid grid into a new grid.");
+				throw new RuntimeException("Totally unexpected: yould not put card from a valid grid into a new grid.");
 			}
 		}
 		result.positionCounter = this.positionCounter;
@@ -121,7 +117,7 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 	private int getXPosition(int counter) {
 		return counter % EDGELENGTH;
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuffer result = new StringBuffer();
@@ -135,23 +131,9 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 		}
 		return result.toString();
 	}
-	
+
 	@Override
 	public boolean isFull() {
 		return this.positionCounter == 9;
-	}
-
-	@Override
-	public List<PositionAndOrientationAndCard> getCards() {
-		int positions = EDGELENGTH*EDGELENGTH;
-		ArrayList<PositionAndOrientationAndCard> result = new ArrayList<PositionAndOrientationAndCard>(positions);
-		for (int i = 0; i < positions; i++) {
-			int x = getXPosition(i);
-			int y = getYPosition(i);
-			CardAndOrientation card = this.cardsInGrid[y][x];
-			PositionAndOrientationAndCard item = new PositionAndOrientationAndCard(i, card);
-			result.add(item);
-		}
-		return result;
 	}
 }

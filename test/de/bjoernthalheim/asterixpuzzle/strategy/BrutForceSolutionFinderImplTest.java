@@ -3,7 +3,6 @@ package de.bjoernthalheim.asterixpuzzle.strategy;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Before;
@@ -17,7 +16,6 @@ import de.bjoernthalheim.asterixpuzzle.deck.FigureAndHalf;
 import de.bjoernthalheim.asterixpuzzle.solution.CardAndOrientation;
 import de.bjoernthalheim.asterixpuzzle.solution.CardGrid;
 import de.bjoernthalheim.asterixpuzzle.solution.Orientation;
-import de.bjoernthalheim.asterixpuzzle.solution.PositionAndOrientationAndCard;
 import de.bjoernthalheim.asterixpuzzle.solution.Solution;
 
 public class BrutForceSolutionFinderImplTest {
@@ -55,13 +53,6 @@ public class BrutForceSolutionFinderImplTest {
 		@Override
 		public boolean isFull() {
 			return secondCard != null;
-		}
-
-		@Override
-		public List<PositionAndOrientationAndCard> getCards() {
-			PositionAndOrientationAndCard cao1 = new PositionAndOrientationAndCard(0, firstCard);
-			PositionAndOrientationAndCard cao2 = new PositionAndOrientationAndCard(1, secondCard);
-			return Arrays.asList(cao1, cao2);
 		}
 
 		@Override
