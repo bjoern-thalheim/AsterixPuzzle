@@ -4,6 +4,11 @@ import de.bjoernthalheim.asterixpuzzle.deck.CardImpl;
 import de.bjoernthalheim.asterixpuzzle.deck.Deck;
 import de.bjoernthalheim.asterixpuzzle.deck.DeckImpl;
 
+/**
+ * Create the normal puzzle deck.
+ * 
+ * @author bjoern
+ */
 public class DeckCreator {
 
 	/**
@@ -18,8 +23,8 @@ public class DeckCreator {
 		addCardToDeck(result, "obmtltab"); // 3
 		addCardToDeck(result, "obatmtlb"); // 4
 		addCardToDeck(result, "lbatotab"); // 5
-		addCardToDeck(result, "lbatotab"); // 6
-		addCardToDeck(result, "lbmtotab"); // 7
+		addCardToDeck(result, "lbmtotab"); // 6
+		addCardToDeck(result, "lbmtatob"); // 7
 		addCardToDeck(result, "obmtatmb"); // 8
 		addCardToDeck(result, "obatltmb"); // 9
 		return result;
