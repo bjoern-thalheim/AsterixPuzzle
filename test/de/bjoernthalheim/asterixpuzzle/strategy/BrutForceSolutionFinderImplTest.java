@@ -104,10 +104,6 @@ public class BrutForceSolutionFinderImplTest {
 		deck.addCard(new CardImpl("abmtmtmt"));
 		List<Solution> solutions = new ArrayList<Solution>(1);
 		strategy.findAllSolutions(solutions, deck, grid);
-		assertEquals(2, solutions.size());
-		for (Solution solution : solutions) {
-			System.out.println(solution);
-		}
+		assertEquals(solutions.toString(), 2, solutions.size());
 	}
-
 }
