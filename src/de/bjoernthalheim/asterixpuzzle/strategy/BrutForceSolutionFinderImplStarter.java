@@ -5,7 +5,6 @@ import java.util.List;
 
 import de.bjoernthalheim.asterixpuzzle.deck.Deck;
 import de.bjoernthalheim.asterixpuzzle.solution.CardGrid;
-import de.bjoernthalheim.asterixpuzzle.solution.Solution;
 import de.bjoernthalheim.asterixpuzzle.solution.ThreeTimesThreeCardGrid;
 
 public class BrutForceSolutionFinderImplStarter {
@@ -21,12 +20,12 @@ public class BrutForceSolutionFinderImplStarter {
 		// init deck, grid and empty solution list.
 		Deck deck = new DeckCreator().createNewDeck();
 		CardGrid grid = new ThreeTimesThreeCardGrid();
-		List<Solution> allSolutions = new ArrayList<Solution>();
+		List<CardGrid> allSolutions = new ArrayList<CardGrid>();
 		// recursion start.
 		impl.findAllSolutions(allSolutions, deck, grid);
 		// Solution presentation.
 		System.out.println(allSolutions.size() + " solutions found: ");
-		for (Solution solution : allSolutions) {
+		for (CardGrid solution : allSolutions) {
 			System.out.println(solution);
 		}
 	}

@@ -16,7 +16,6 @@ import de.bjoernthalheim.asterixpuzzle.deck.FigureAndHalf;
 import de.bjoernthalheim.asterixpuzzle.solution.CardAndOrientation;
 import de.bjoernthalheim.asterixpuzzle.solution.CardGrid;
 import de.bjoernthalheim.asterixpuzzle.solution.Orientation;
-import de.bjoernthalheim.asterixpuzzle.solution.Solution;
 
 public class BrutForceSolutionFinderImplTest {
 
@@ -118,7 +117,7 @@ public class BrutForceSolutionFinderImplTest {
 		Deck deck = new DeckImpl();
 		deck.addCard(new CardImpl("atatatat"));
 		deck.addCard(new CardImpl("abababab"));
-		List<Solution> solutions = new ArrayList<Solution>(1);
+		List<CardGrid> solutions = new ArrayList<CardGrid>(1);
 		strategy.findAllSolutions(solutions, deck, grid);
 		solutions = strategy.removeIsomorphicSolutions(solutions);
 		// cards fit 2(first/second Position)*4x4(per position two times all orientations) times, as long as isomorphic
@@ -132,9 +131,9 @@ public class BrutForceSolutionFinderImplTest {
 		Deck deck = new DeckImpl();
 		deck.addCard(new CardImpl("atmtmtmt"));
 		deck.addCard(new CardImpl("abmtmtmt"));
-		List<Solution> solutions = new ArrayList<Solution>(1);
+		List<CardGrid> solutions = new ArrayList<CardGrid>(1);
 		strategy.findAllSolutions(solutions, deck, grid);
-		solutions = strategy.removeIsomorphicSolutions(solutions); 
-		assertEquals(solutions.toString(), 1, solutions.size());
+		solutions = strategy.removeIsomorphicSolutions(solutions);
+		assertEquals(solutions.toString(), 2, solutions.size());
 	}
 }

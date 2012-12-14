@@ -7,8 +7,6 @@ import de.bjoernthalheim.asterixpuzzle.deck.Card;
 import de.bjoernthalheim.asterixpuzzle.deck.Deck;
 import de.bjoernthalheim.asterixpuzzle.solution.CardGrid;
 import de.bjoernthalheim.asterixpuzzle.solution.Orientation;
-import de.bjoernthalheim.asterixpuzzle.solution.Solution;
-import de.bjoernthalheim.asterixpuzzle.solution.SolutionImpl;
 
 public class BrutForceSolutionFinderImpl implements SolutionFinder {
 
@@ -17,7 +15,7 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 	 * empty slot on the grid. If the card fits, recurse further. If not, return an empty list.
 	 */
 	@Override
-	public void findAllSolutions(List<Solution> solutions, Deck deck, CardGrid grid) {
+	public void findAllSolutions(List<CardGrid> solutions, Deck deck, CardGrid grid) {
 		for (Card card : deck.getCards()) {
 			Deck deckCopy = deck.defensiveCopy();
 			deckCopy.take(card);
@@ -25,7 +23,7 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 				CardGrid gridCopy = grid.defensiveCopy();
 				if (gridCopy.putOntoNextFreePositionSuccessful(card, orientation)) {
 					if (gridCopy.isFull()) {
-						solutions.add(new SolutionImpl(gridCopy));
+						solutions.add(gridCopy);
 					} else {
 						findAllSolutions(solutions, deckCopy, gridCopy);
 					}
@@ -35,9 +33,9 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 	}
 
 	@Override
-	public List<Solution> removeIsomorphicSolutions(List<Solution> solutions) {
-		List<Solution> result = new ArrayList<Solution>();
-		for (Solution solution : solutions) {
+	public List<CardGrid> removeIsomorphicSolutions(List<CardGrid> solutions) {
+		List<CardGrid> result = new ArrayList<CardGrid>();
+		for (CardGrid solution : solutions) {
 			if (!containsIsomorphicSolutions(result, solution)) {
 				result.add(solution);
 			}
@@ -45,8 +43,8 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 		return result;
 	}
 
-	private boolean containsIsomorphicSolutions(List<Solution> result, Solution solutionToInsert) {
-		for (Solution solution : result) {
+	private boolean containsIsomorphicSolutions(List<CardGrid> result, CardGrid solutionToInsert) {
+		for (CardGrid solution : result) {
 			if (isIsomorphic(solution, solutionToInsert)) {
 				return true;
 			}
@@ -55,7 +53,7 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 		return false;
 	}
 
-	private boolean isIsomorphic(Solution solution, Solution solutionToInsert) {
+	private boolean isIsomorphic(CardGrid solution, CardGrid solutionToInsert) {
 		for (Orientation orientation : Orientation.values()) {
 			if (translate(solution, orientation).equals(solutionToInsert)) {
 				return true;
@@ -64,7 +62,7 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 		return false;
 	}
 
-	private Solution translate(Solution solution, Orientation orientation) {
+	private CardGrid translate(CardGrid solution, Orientation orientation) {
 		return solution;
 	}
 }
