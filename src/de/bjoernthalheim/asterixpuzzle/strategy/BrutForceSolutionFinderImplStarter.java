@@ -23,9 +23,11 @@ public class BrutForceSolutionFinderImplStarter {
 		List<CardGrid> allSolutions = new ArrayList<CardGrid>();
 		// recursion start.
 		impl.findAllSolutions(allSolutions, deck, grid);
+		// find really distinct solutions
+		List<CardGrid> solutions = impl.removeIsomorphicSolutions(allSolutions);
 		// Solution presentation.
-		System.out.println(allSolutions.size() + " solutions found: ");
-		for (CardGrid solution : allSolutions) {
+		System.out.println(solutions.size() + " solutions found: ");
+		for (CardGrid solution : solutions) {
 			System.out.println(solution);
 		}
 	}
