@@ -149,8 +149,8 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 	@Override
 	public boolean isIsomorphic(CardGrid otherGrid) {
 		for (Orientation orientation : Orientation.values()) {
-			ThreeTimesThreeCardGrid rotatesGrid = this.rotate(orientation);
-			if (rotatesGrid.equals(otherGrid)) {
+			ThreeTimesThreeCardGrid rotatedGrid = this.rotate(orientation);
+			if (rotatedGrid.equals(otherGrid)) {
 				return true;
 			}
 		}
@@ -170,14 +170,53 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 	List<Integer> createRotationMatrix(Orientation orientation) {
 		switch (orientation) {
 		case NORTH:
+			// 0 1 2
+			// 3 4 5
+			// 6 7 8
 			return Arrays.asList(0,1,2,3,4,5,6,7,8);
 		case EAST:
+			// 6 3 0
+			// 7 4 1
+			// 8 5 2
 			return Arrays.asList(6,3,0,7,4,1,8,5,2);
 		case SOUTH:
+			// 8 7 6
+			// 5 4 3
+			// 2 1 0
 			return Arrays.asList(8,7,6,5,4,3,2,1,0);
 		case WEST:
+			// 2 5 8
+			// 1 4 7
+			// 0 3 6
 			return Arrays.asList(2,5,8,1,4,7,0,3,6);
 		}
 		throw new RuntimeException(orientation + " has not been anticipated here.");
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(cardsInGrid);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ThreeTimesThreeCardGrid other = (ThreeTimesThreeCardGrid) obj;
+		for (int i = 0; i < EDGELENGTH; i++) {
+			for (int j = 0; j < EDGELENGTH; j++) {
+				if (!this.cardsInGrid[j][i].equals(other.cardsInGrid[j][i])) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }
