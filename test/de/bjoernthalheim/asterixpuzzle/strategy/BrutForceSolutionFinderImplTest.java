@@ -99,6 +99,28 @@ public class BrutForceSolutionFinderImplTest {
 		private BrutForceSolutionFinderImplTest getOuterType() {
 			return BrutForceSolutionFinderImplTest.this;
 		}
+
+		@Override
+		public boolean isIsomorphic(CardGrid otherGrid) {
+			return equals(otherGrid) || mirrorEquals((Test2By1Grid) otherGrid);
+		}
+
+		private boolean mirrorEquals(Test2By1Grid otherGrid) {
+			for (Orientation orientation : Orientation.values()) {
+				FigureAndHalf myFirstCardEdge = firstCard.getEdge(orientation);
+				FigureAndHalf otherFirstCardOppositeEdge = otherGrid.firstCard.getEdge(orientation.opposite());
+				FigureAndHalf mySecondCardEdge = secondCard.getEdge(orientation);
+				FigureAndHalf otherSecondCardOppositeEdge = otherGrid.secondCard.getEdge(orientation.opposite());
+				if (!myFirstCardEdge.equals(otherFirstCardOppositeEdge)) {
+					return false;
+				}
+				if (!mySecondCardEdge.equals(otherSecondCardOppositeEdge)) {
+					return false;
+				}
+			}
+			return true;
+		}
+
 	}
 
 	/**

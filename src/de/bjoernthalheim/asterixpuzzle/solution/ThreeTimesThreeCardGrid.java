@@ -1,5 +1,8 @@
 package de.bjoernthalheim.asterixpuzzle.solution;
 
+import java.util.Arrays;
+import java.util.List;
+
 import de.bjoernthalheim.asterixpuzzle.deck.Card;
 import de.bjoernthalheim.asterixpuzzle.deck.FigureAndHalf;
 
@@ -99,15 +102,20 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 	public CardGrid defensiveCopy() {
 		ThreeTimesThreeCardGrid result = new ThreeTimesThreeCardGrid();
 		for (int counter = 0; counter < EDGELENGTH * EDGELENGTH; counter++) {
-			int x = getXPosition(counter);
-			int y = getYPosition(counter);
-			CardAndOrientation cell = cardsInGrid[y][x];
+			CardAndOrientation cell = getCardInIndex(counter);
 			if (!result.putOntoNextFreePositionSuccessful(cell.getCard(), cell.getOrientation())) {
 				throw new RuntimeException("Totally unexpected: yould not put card from a valid grid into a new grid.");
 			}
 		}
 		result.positionCounter = this.positionCounter;
 		return result;
+	}
+
+	private CardAndOrientation getCardInIndex(int counter) {
+		int x = getXPosition(counter);
+		int y = getYPosition(counter);
+		CardAndOrientation cell = cardsInGrid[y][x];
+		return cell;
 	}
 
 	private int getYPosition(int counter) {
@@ -135,5 +143,42 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 	@Override
 	public boolean isFull() {
 		return this.positionCounter == 9;
+	}
+
+	@Override
+	public boolean isIsomorphic(CardGrid otherGrid) {
+		for (Orientation orientation : Orientation.values()) {
+			ThreeTimesThreeCardGrid rotatesGrid = this.rotate(orientation);
+			if (rotatesGrid.equals(otherGrid)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private ThreeTimesThreeCardGrid rotate(Orientation orientation) {
+		ThreeTimesThreeCardGrid result = new ThreeTimesThreeCardGrid();
+		List<Integer> rotationMatrix = createRotationMatrix(orientation);
+		for (Integer integer : rotationMatrix) {
+			CardAndOrientation cardInIndex = this.getCardInIndex(integer);
+			Card originalCard = cardInIndex.getCard();
+			Orientation rotatedOrientation = cardInIndex.getOrientation().rotate(orientation);
+			result.putOntoNextFreePositionSuccessful(originalCard, rotatedOrientation);
+		}
+		return result;
+	}
+
+	List<Integer> createRotationMatrix(Orientation orientation) {
+		switch (orientation) {
+		case NORTH:
+			return Arrays.asList(0,1,2,3,4,5,6,7,8);
+		case EAST:
+			return Arrays.asList(6,3,0,7,4,1,8,5,2);
+		case SOUTH:
+			return Arrays.asList(8,7,6,5,4,3,2,1,0);
+		case WEST:
+			return Arrays.asList(2,5,8,1,4,7,0,3,6);
+		}
+		throw new RuntimeException(orientation + " has not been anticipated here.");
 	}
 }

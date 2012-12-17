@@ -45,24 +45,11 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 
 	private boolean containsIsomorphicSolutions(List<CardGrid> result, CardGrid solutionToInsert) {
 		for (CardGrid solution : result) {
-			if (isIsomorphic(solution, solutionToInsert)) {
+			if (solution.isIsomorphic(solutionToInsert)) {
 				return true;
 			}
 		}
 		// no conflicts found
 		return false;
-	}
-
-	private boolean isIsomorphic(CardGrid solution, CardGrid solutionToInsert) {
-		for (Orientation orientation : Orientation.values()) {
-			if (translate(solution, orientation).equals(solutionToInsert)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private CardGrid translate(CardGrid solution, Orientation orientation) {
-		return solution;
 	}
 }

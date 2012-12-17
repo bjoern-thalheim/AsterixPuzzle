@@ -29,4 +29,13 @@ public interface CardGrid {
 	 * @return <code>true</code> if all blank spaces have been filled - this means we found a solution.
 	 */
 	boolean isFull();
+
+	/**
+	 * Tells if the given grid looks like this grid, except for rotation.
+	 * 
+	 * @param otherGrid
+	 *            Another grid.
+	 * @return <code>true</code> if this grid and the other grid look exactly the same.
+	 */
+	boolean isIsomorphic(CardGrid otherGrid);
 }
