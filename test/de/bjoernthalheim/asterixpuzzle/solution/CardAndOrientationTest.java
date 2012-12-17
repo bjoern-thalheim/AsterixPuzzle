@@ -33,11 +33,10 @@ public class CardAndOrientationTest {
 	 */
 	@Test
 	public void testNoRotation() {
-		CardAndOrientation cardAndOrientation = new CardAndOrientation(card, Orientation.NORTH);
-		assertEquals(card.getEdge(Orientation.NORTH), cardAndOrientation.getEdge(Orientation.NORTH));
-		assertEquals(card.getEdge(Orientation.EAST), cardAndOrientation.getEdge(Orientation.EAST));
-		assertEquals(card.getEdge(Orientation.SOUTH), cardAndOrientation.getEdge(Orientation.SOUTH));
-		assertEquals(card.getEdge(Orientation.WEST), cardAndOrientation.getEdge(Orientation.WEST));
+		assertEquals(card.getEdge(Orientation.NORTH), new CardImpl(card, Orientation.NORTH).getEdge(Orientation.NORTH));
+		assertEquals(card.getEdge(Orientation.EAST), new CardImpl(card, Orientation.NORTH).getEdge(Orientation.EAST));
+		assertEquals(card.getEdge(Orientation.SOUTH), new CardImpl(card, Orientation.NORTH).getEdge(Orientation.SOUTH));
+		assertEquals(card.getEdge(Orientation.WEST), new CardImpl(card, Orientation.NORTH).getEdge(Orientation.WEST));
 	}
 
 	/**
@@ -45,7 +44,7 @@ public class CardAndOrientationTest {
 	 */
 	@Test
 	public void testRotateEast() {
-		CardAndOrientation cardAndOrientation = new CardAndOrientation(card, Orientation.EAST);
+		Card cardAndOrientation = new CardImpl(card, Orientation.EAST);
 		assertEquals(card.getEdge(Orientation.NORTH), cardAndOrientation.getEdge(Orientation.EAST));
 		assertEquals(card.getEdge(Orientation.EAST), cardAndOrientation.getEdge(Orientation.SOUTH));
 		assertEquals(card.getEdge(Orientation.SOUTH), cardAndOrientation.getEdge(Orientation.WEST));
@@ -57,7 +56,7 @@ public class CardAndOrientationTest {
 	 */
 	@Test
 	public void testRotateSouth() {
-		CardAndOrientation cardAndOrientation = new CardAndOrientation(card, Orientation.SOUTH);
+		Card cardAndOrientation = new CardImpl(card, Orientation.SOUTH);
 		assertEquals(card.getEdge(Orientation.WEST), cardAndOrientation.getEdge(Orientation.EAST));
 		assertEquals(card.getEdge(Orientation.EAST), cardAndOrientation.getEdge(Orientation.WEST));
 		assertEquals(card.getEdge(Orientation.NORTH), cardAndOrientation.getEdge(Orientation.SOUTH));
@@ -69,7 +68,7 @@ public class CardAndOrientationTest {
 	 */
 	@Test
 	public void testRotateWest() {
-		CardAndOrientation cardAndOrientation = new CardAndOrientation(card, Orientation.WEST);
+		Card cardAndOrientation = new CardImpl(card, Orientation.WEST);
 		assertEquals(card.getEdge(Orientation.NORTH), cardAndOrientation.getEdge(Orientation.WEST));
 		assertEquals(card.getEdge(Orientation.EAST), cardAndOrientation.getEdge(Orientation.NORTH));
 		assertEquals(card.getEdge(Orientation.SOUTH), cardAndOrientation.getEdge(Orientation.EAST));

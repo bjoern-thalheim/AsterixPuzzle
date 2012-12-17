@@ -13,7 +13,6 @@ import de.bjoernthalheim.asterixpuzzle.deck.CardImpl;
 import de.bjoernthalheim.asterixpuzzle.deck.Deck;
 import de.bjoernthalheim.asterixpuzzle.deck.DeckImpl;
 import de.bjoernthalheim.asterixpuzzle.deck.FigureAndHalf;
-import de.bjoernthalheim.asterixpuzzle.solution.CardAndOrientation;
 import de.bjoernthalheim.asterixpuzzle.solution.CardGrid;
 import de.bjoernthalheim.asterixpuzzle.solution.Orientation;
 
@@ -23,11 +22,11 @@ public class BrutForceSolutionFinderImplTest {
 
 		private int counter = 0;
 
-		CardAndOrientation firstCard, secondCard;
+		Card firstCard, secondCard;
 
 		@Override
 		public boolean putOntoNextFreePositionSuccessful(Card card, Orientation orientation) {
-			CardAndOrientation cardAndOrientationToInsert = new CardAndOrientation(card, orientation);
+			Card cardAndOrientationToInsert = new CardImpl(card, orientation);
 			if (this.counter == 0) {
 				counter++;
 				this.firstCard = cardAndOrientationToInsert;
@@ -43,9 +42,9 @@ public class BrutForceSolutionFinderImplTest {
 		public CardGrid defensiveCopy() {
 			Test2By1Grid result = new Test2By1Grid();
 			if (null != firstCard)
-				result.putOntoNextFreePositionSuccessful(firstCard.getCard(), firstCard.getOrientation());
+				result.putOntoNextFreePositionSuccessful(firstCard, Orientation.NORTH);
 			if (null != secondCard)
-				result.putOntoNextFreePositionSuccessful(secondCard.getCard(), secondCard.getOrientation());
+				result.putOntoNextFreePositionSuccessful(secondCard, Orientation.NORTH);
 			return result;
 		}
 
@@ -56,9 +55,8 @@ public class BrutForceSolutionFinderImplTest {
 
 		@Override
 		public String toString() {
-			String firstPart = firstCard == null ? "" : firstCard.getCard() + ":" + firstCard.getOrientation();
-			String secondPart = secondCard == null ? "" : ", " + secondCard.getCard() + ":"
-					+ secondCard.getOrientation();
+			String firstPart = firstCard == null ? "" : firstCard.toString();
+			String secondPart = secondCard == null ? "" : ", " + secondCard.toString();
 			return firstPart + secondPart;
 		}
 

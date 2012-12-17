@@ -9,17 +9,17 @@ public enum Orientation {
 
 	NORTH, EAST, SOUTH, WEST;
 
-	public Orientation rotate(Orientation rotation) {
+	public Orientation opposite() {
+		return plus(SOUTH);
+	}
+
+	public Orientation plus(Orientation rotation) {
 		Orientation[] values = Orientation.values();
 		int length = values.length;
 		int myOrdinal = this.ordinal();
 		int rotationOrdinal = rotation.ordinal();
-		int sum = (length + myOrdinal - rotationOrdinal) % length;
+		int sum = (myOrdinal + rotationOrdinal) % length;
 		Orientation result = values[sum];
 		return result;
-	}
-
-	public Orientation opposite() {
-		return rotate(SOUTH);
 	}
 }

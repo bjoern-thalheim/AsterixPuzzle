@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import de.bjoernthalheim.asterixpuzzle.deck.Card;
+import de.bjoernthalheim.asterixpuzzle.deck.CardImpl;
 import de.bjoernthalheim.asterixpuzzle.deck.FigureAndHalf;
 
 /**
@@ -15,17 +16,17 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 
 	private static final int EDGELENGTH = 3;
 
-	private CardAndOrientation[][] cardsInGrid;
+	private Card[][] cardsInGrid;
 
 	private int positionCounter;
 
 	public ThreeTimesThreeCardGrid() {
 		positionCounter = 0;
-		this.cardsInGrid = new CardAndOrientation[EDGELENGTH][EDGELENGTH];
+		this.cardsInGrid = new Card[EDGELENGTH][EDGELENGTH];
 		for (int i = 0; i < cardsInGrid.length; i++) {
-			CardAndOrientation[] line = cardsInGrid[i];
+			Card[] line = cardsInGrid[i];
 			for (int j = 0; j < line.length; j++) {
-				line[j] = CardAndOrientation.NOTHING;
+				line[j] = CardImpl.NOTHING;
 			}
 		}
 	}
@@ -39,13 +40,13 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 	@Override
 	public boolean putOntoNextFreePositionSuccessful(Card card, Orientation orientation) {
 		// use div/mod positioncounter to determine next field.
-		CardAndOrientation cardAndOrientation = new CardAndOrientation(card, orientation);
+		Card Card = new CardImpl(card, orientation);
 		int x = getXPosition(positionCounter);
 		int y = getYPosition(positionCounter);
 		// Find all four neighbors and check for conflicts.
-		if (!conflictsWithNeighbors(y, x, cardAndOrientation)) {
-			// if no conflict, add the CardAndOrientation into the grid and return true,.
-			this.cardsInGrid[y][x] = cardAndOrientation;
+		if (!conflictsWithNeighbors(y, x, Card)) {
+			// if no conflict, add the Card into the grid and return true,.
+			this.cardsInGrid[y][x] = Card;
 			positionCounter++;
 			return true;
 		}
@@ -53,10 +54,10 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 		return false;
 	}
 
-	private boolean conflictsWithNeighbors(int y, int x, CardAndOrientation cardAndOrientation) {
+	private boolean conflictsWithNeighbors(int y, int x, Card Card) {
 		Orientation[] orientations = Orientation.values();
 		for (Orientation orientation : orientations) {
-			if (conflictWithNeighbor(y, x, cardAndOrientation, orientation)) {
+			if (conflictWithNeighbor(y, x, Card, orientation)) {
 				return true;
 			}
 		}
@@ -64,9 +65,9 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 		return false;
 	}
 
-	private boolean conflictWithNeighbor(int y, int x, CardAndOrientation cardAndOrientation, Orientation orientation) {
+	private boolean conflictWithNeighbor(int y, int x, Card Card, Orientation orientation) {
 		FigureAndHalf other = findNeighbor(y, x, orientation);
-		FigureAndHalf self = cardAndOrientation.getEdge(orientation);
+		FigureAndHalf self = Card.getEdge(orientation);
 		return !self.fits(other);
 	}
 
@@ -102,8 +103,8 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 	public CardGrid defensiveCopy() {
 		ThreeTimesThreeCardGrid result = new ThreeTimesThreeCardGrid();
 		for (int counter = 0; counter < EDGELENGTH * EDGELENGTH; counter++) {
-			CardAndOrientation cell = getCardInIndex(counter);
-			if (!result.putOntoNextFreePositionSuccessful(cell.getCard(), cell.getOrientation())) {
+			Card cell = getCardInIndex(counter);
+			if (!result.putOntoNextFreePositionSuccessful(cell, Orientation.NORTH)) {
 				throw new RuntimeException("Totally unexpected: yould not put card from a valid grid into a new grid.");
 			}
 		}
@@ -111,10 +112,10 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 		return result;
 	}
 
-	private CardAndOrientation getCardInIndex(int counter) {
+	private Card getCardInIndex(int counter) {
 		int x = getXPosition(counter);
 		int y = getYPosition(counter);
-		CardAndOrientation cell = cardsInGrid[y][x];
+		Card cell = cardsInGrid[y][x];
 		return cell;
 	}
 
@@ -130,10 +131,10 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 	public String toString() {
 		StringBuffer result = new StringBuffer();
 		result.append("Position: " + positionCounter + "\n");
-		for (CardAndOrientation[] line : this.cardsInGrid) {
+		for (Card[] line : this.cardsInGrid) {
 			result.append("[");
-			for (CardAndOrientation cardAndOrientation : line) {
-				result.append(cardAndOrientation + ", ");
+			for (Card Card : line) {
+				result.append(Card + ", ");
 			}
 			result.append("]\n");
 		}
@@ -160,10 +161,8 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 		ThreeTimesThreeCardGrid result = new ThreeTimesThreeCardGrid();
 		List<Integer> rotationMatrix = createRotationMatrix(orientation);
 		for (Integer integer : rotationMatrix) {
-			CardAndOrientation cardInIndex = this.getCardInIndex(integer);
-			Card originalCard = cardInIndex.getCard();
-			Orientation rotatedOrientation = cardInIndex.getOrientation().rotate(orientation);
-			result.putOntoNextFreePositionSuccessful(originalCard, rotatedOrientation);
+			Card originalCard = this.getCardInIndex(integer);
+			result.putOntoNextFreePositionSuccessful(originalCard, orientation);
 		}
 		return result;
 	}

@@ -60,6 +60,15 @@ public class CardImpl implements Card {
 		edges = new HashMap<Orientation, FigureAndHalf>();
 	}
 
+	public CardImpl(Card card, Orientation rotation) {
+		// create a clone of the given Card with the given Orientation.
+		edges = new HashMap<Orientation, FigureAndHalf>();
+		Orientation[] orientations = Orientation.values();
+		for (Orientation orientation : orientations) {
+			edges.put(orientation.plus(rotation), card.getEdge(orientation));
+		}
+	}
+
 	/**
 	 * Init the edge according to the given String.
 	 * 
