@@ -27,6 +27,7 @@ public class BrutForceSolutionFinderImplStarter {
 		List<CardGrid> solutions = impl.removeIsomorphicSolutions(allSolutions);
 		// Solution presentation.
 		System.out.println(solutions.size() + " solutions found: ");
+		// As long as we don't have a graphical representation, we need to output this stuff somehow
 		for (CardGrid solution : solutions) {
 			System.out.println(solution);
 		}
