@@ -18,4 +18,4 @@ The Idea of the brute force solution algorithm is that I start with a deck of al
 - iterate over all orientations
 - put the card into the next free position in the grid
 - if no conflicts are in the grid, recurse further
-- otherwise, return an empty list. (because on this path no solution can be found.
+- if the grid is full, add this configuration to the list of solutions.
