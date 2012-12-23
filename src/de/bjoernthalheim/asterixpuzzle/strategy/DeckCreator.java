@@ -18,15 +18,15 @@ public class DeckCreator {
 	 */
 	public Deck createNewDeck() {
 		Deck result = new DeckImpl();
-		addCardToDeck(result, "abmtotob"); // 1
-		addCardToDeck(result, "lbatltmb"); // 2
-		addCardToDeck(result, "obmtltab"); // 3
-		addCardToDeck(result, "obatmtlb"); // 4
-		addCardToDeck(result, "lbatotab"); // 5
-		addCardToDeck(result, "lbmtotab"); // 6
-		addCardToDeck(result, "lbmtatob"); // 7
-		addCardToDeck(result, "obmtatmb"); // 8
-		addCardToDeck(result, "obatltmb"); // 9
+		addCardToDeck(result, "lbatotab"); // 1
+		addCardToDeck(result, "lbobatmt"); // 2
+		addCardToDeck(result, "lbmtotab"); // 3
+		addCardToDeck(result, "atmbobmt"); // 4
+		addCardToDeck(result, "oblbmtat"); // 5
+		addCardToDeck(result, "mblbatlt"); // 6
+		addCardToDeck(result, "obatltmb"); // 7
+		addCardToDeck(result, "abobmtlt"); // 8
+		addCardToDeck(result, "mtotobab"); // 9
 		return result;
 	}
 
