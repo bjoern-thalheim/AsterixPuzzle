@@ -4,7 +4,7 @@ import java.util.List;
 
 import de.bjoernthalheim.asterixpuzzle.deck.Deck;
 import de.bjoernthalheim.asterixpuzzle.solution.CardGrid;
-import de.bjoernthalheim.asterixpuzzle.solution.IndexableCardGrid;
+import de.bjoernthalheim.asterixpuzzle.solution.DisplayableCardGrid;
 
 public interface SolutionFinder {
 
@@ -15,7 +15,7 @@ public interface SolutionFinder {
 	 * need to be found and only one of them retained.
 	 * 
 	 * @param <T>
-	 *            {@link CardGrid} or {@link IndexableCardGrid}.
+	 *            {@link CardGrid} or {@link DisplayableCardGrid}.
 	 * 
 	 * @param solutions
 	 *            The solution list which contains isomorphic solutions.

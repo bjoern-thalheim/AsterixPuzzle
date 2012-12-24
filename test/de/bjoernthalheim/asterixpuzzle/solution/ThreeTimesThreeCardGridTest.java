@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.bjoernthalheim.asterixpuzzle.deck.BlankCard;
 import de.bjoernthalheim.asterixpuzzle.deck.Card;
 import de.bjoernthalheim.asterixpuzzle.deck.CardImpl;
 
@@ -32,8 +33,8 @@ public class ThreeTimesThreeCardGridTest {
 		CardImpl cornerCard = new CardImpl("ATABOTOB");
 		grid1.putOntoNextFreePositionSuccessful(cornerCard, Orientation.NORTH);
 		ThreeTimesThreeCardGrid grid2 = new ThreeTimesThreeCardGrid();
-		grid2.putOntoNextFreePositionSuccessful(CardImpl.NOTHING, Orientation.NORTH);
-		grid2.putOntoNextFreePositionSuccessful(CardImpl.NOTHING, Orientation.NORTH);
+		grid2.putOntoNextFreePositionSuccessful(new BlankCard(), Orientation.NORTH);
+		grid2.putOntoNextFreePositionSuccessful(new BlankCard(), Orientation.NORTH);
 		grid2.putOntoNextFreePositionSuccessful(cornerCard, Orientation.EAST);
 		assertTrue(grid1.isIsomorphic(grid2));
 	}

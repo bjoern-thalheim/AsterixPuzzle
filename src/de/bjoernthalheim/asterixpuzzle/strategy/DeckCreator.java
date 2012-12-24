@@ -1,8 +1,8 @@
 package de.bjoernthalheim.asterixpuzzle.strategy;
 
-import de.bjoernthalheim.asterixpuzzle.deck.CardImpl;
 import de.bjoernthalheim.asterixpuzzle.deck.Deck;
 import de.bjoernthalheim.asterixpuzzle.deck.DeckImpl;
+import de.bjoernthalheim.asterixpuzzle.solution.DisplayableCardImpl;
 
 /**
  * Create the normal puzzle deck.
@@ -18,20 +18,21 @@ public class DeckCreator {
 	 */
 	public Deck createNewDeck() {
 		Deck result = new DeckImpl();
-		addCardToDeck(result, "lbatotab"); // 1
-		addCardToDeck(result, "lbobatmt"); // 2
-		addCardToDeck(result, "lbmtotab"); // 3
-		addCardToDeck(result, "atmbobmt"); // 4
-		addCardToDeck(result, "oblbmtat"); // 5
-		addCardToDeck(result, "mblbatlt"); // 6
-		addCardToDeck(result, "obatltmb"); // 7
-		addCardToDeck(result, "abobmtlt"); // 8
-		addCardToDeck(result, "mtotobab"); // 9
+		addCardToDeck(result, "lbatotab", "1.jpg"); // 1
+		addCardToDeck(result, "lbobatmt", "2.jpg"); // 2
+		addCardToDeck(result, "lbmtotab", "3.jpg"); // 3
+		addCardToDeck(result, "atmbobmt", "4.jpg"); // 4
+		addCardToDeck(result, "oblbmtat", "5.jpg"); // 5
+		addCardToDeck(result, "mblbatlt", "6.jpg"); // 6
+		addCardToDeck(result, "obatltmb", "7.jpg"); // 7
+		addCardToDeck(result, "abobmtlt", "8.jpg"); // 8
+		addCardToDeck(result, "mtotobab", "9.jpg"); // 9
 		return result;
 	}
 
-	private void addCardToDeck(Deck result, String spec) {
-		CardImpl card = new CardImpl(spec);
+	private void addCardToDeck(Deck result, String spec, String imageLocation) {
+		DisplayableCardImpl card = new DisplayableCardImpl(spec);
+		card.setImagePath(imageLocation);
 		result.addCard(card);
 	}
 }

@@ -1,8 +1,8 @@
 package de.bjoernthalheim.asterixpuzzle.solution;
 
-import de.bjoernthalheim.asterixpuzzle.deck.Card;
+import de.bjoernthalheim.asterixpuzzle.strategy.DisplayableCard;
 
-public interface IndexableCardGrid extends CardGrid {
+public interface DisplayableCardGrid extends CardGrid {
 
 	/**
 	 * Get the desired Card at the given index.
@@ -11,5 +11,5 @@ public interface IndexableCardGrid extends CardGrid {
 	 * @param y vertical coordinate.
 	 * @return The card at this position.
 	 */
-	Card getCardAt(int x, int y);
+	DisplayableCard getCardAt(int x, int y);
 }

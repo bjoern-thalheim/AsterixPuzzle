@@ -6,6 +6,7 @@ public interface CardGrid {
 
 	/**
 	 * Put a card into the next free position in the grid.
+	 * @param <T>
 	 * 
 	 * @param card
 	 *            The card which shall be put onto the next free position of the grid.
@@ -14,7 +15,7 @@ public interface CardGrid {
 	 * @return If it is possible to insert the given card with the given orientation onto the next free position of the
 	 *         grid.
 	 */
-	boolean putOntoNextFreePositionSuccessful(Card card, Orientation orientation);
+	<T extends Card> boolean putOntoNextFreePositionSuccessful(T card, Orientation orientation);
 
 	/**
 	 * Create a copy of this grid.

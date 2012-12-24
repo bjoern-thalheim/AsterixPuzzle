@@ -3,30 +3,31 @@ package de.bjoernthalheim.asterixpuzzle.solution;
 import java.util.Arrays;
 import java.util.List;
 
+import de.bjoernthalheim.asterixpuzzle.deck.BlankCard;
 import de.bjoernthalheim.asterixpuzzle.deck.Card;
-import de.bjoernthalheim.asterixpuzzle.deck.CardImpl;
 import de.bjoernthalheim.asterixpuzzle.deck.FigureAndHalf;
+import de.bjoernthalheim.asterixpuzzle.strategy.DisplayableCard;
 
 /**
  * A Grid consisting of three times three cards.
  * 
  * @author bjoern
  */
-public class ThreeTimesThreeCardGrid implements IndexableCardGrid {
+public class ThreeTimesThreeCardGrid implements DisplayableCardGrid {
 
 	private static final int EDGELENGTH = 3;
 
-	private Card[][] cardsInGrid;
+	private DisplayableCard[][] cardsInGrid;
 
 	private int positionCounter;
 
 	public ThreeTimesThreeCardGrid() {
 		positionCounter = 0;
-		this.cardsInGrid = new Card[EDGELENGTH][EDGELENGTH];
+		this.cardsInGrid = new DisplayableCard[EDGELENGTH][EDGELENGTH];
 		for (int i = 0; i < cardsInGrid.length; i++) {
 			Card[] line = cardsInGrid[i];
 			for (int j = 0; j < line.length; j++) {
-				line[j] = CardImpl.NOTHING;
+				line[j] = new BlankCard();
 			}
 		}
 	}
@@ -38,9 +39,9 @@ public class ThreeTimesThreeCardGrid implements IndexableCardGrid {
 	 * de.bjoernthalheim.asterixpuzzle.solution.Orientation)
 	 */
 	@Override
-	public boolean putOntoNextFreePositionSuccessful(Card card, Orientation orientation) {
+	public <T extends Card> boolean putOntoNextFreePositionSuccessful(T card, Orientation orientation) {
 		// use div/mod positioncounter to determine next field.
-		Card Card = new CardImpl(card, orientation);
+		DisplayableCard Card = new DisplayableCardImpl(card, orientation);
 		int x = getXPosition(positionCounter);
 		int y = getYPosition(positionCounter);
 		// Find all four neighbors and check for conflicts.
@@ -199,7 +200,9 @@ public class ThreeTimesThreeCardGrid implements IndexableCardGrid {
 		ThreeTimesThreeCardGrid other = (ThreeTimesThreeCardGrid) obj;
 		for (int i = 0; i < EDGELENGTH; i++) {
 			for (int j = 0; j < EDGELENGTH; j++) {
-				if (!this.cardsInGrid[j][i].equals(other.cardsInGrid[j][i])) {
+				DisplayableCard myCard = this.cardsInGrid[j][i];
+				DisplayableCard otherCard = other.cardsInGrid[j][i];
+				if (!myCard.equals(otherCard)) {
 					return false;
 				}
 			}
@@ -212,13 +215,13 @@ public class ThreeTimesThreeCardGrid implements IndexableCardGrid {
 	 * @see de.bjoernthalheim.asterixpuzzle.solution.CardGrid#getCardAt(int, int)
 	 */
 	@Override
-	public Card getCardAt(int x, int y) {
+	public DisplayableCard getCardAt(int x, int y) {
 		return this.cardsInGrid[y][x];
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public IndexableCardGrid defensiveCopy() {
+	public DisplayableCardGrid defensiveCopy() {
 		ThreeTimesThreeCardGrid result = new ThreeTimesThreeCardGrid();
 		for (int counter = 0; counter < EDGELENGTH * EDGELENGTH; counter++) {
 			Card cell = getCardInIndex(counter);

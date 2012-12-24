@@ -6,17 +6,15 @@ import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import de.bjoernthalheim.asterixpuzzle.deck.Card;
-import de.bjoernthalheim.asterixpuzzle.solution.CardGrid;
-import de.bjoernthalheim.asterixpuzzle.solution.IndexableCardGrid;
+import de.bjoernthalheim.asterixpuzzle.solution.DisplayableCardGrid;
 
 public class SolutionJFXVisualizer {
 
 	private static final int GRID_EDGE_LENGTH = 3;
 	private static final int CARD_DISPLAY_WIDTH = 150;
-	private IndexableCardGrid solution;
+	private DisplayableCardGrid solution;
 
-	public SolutionJFXVisualizer(IndexableCardGrid solution) {
+	public SolutionJFXVisualizer(DisplayableCardGrid solution) {
 		this.solution = solution;
 	}
 
@@ -51,10 +49,20 @@ public class SolutionJFXVisualizer {
 			HBox hBox = new HBox();
 			result.getChildren().add(hBox);
 			for (int j = 0; j < GRID_EDGE_LENGTH; j++) {
-				Card card = solution.getCardAt(j, i);
-				// hBox.getChildren().add(createImageView(card.getImagePath()));
+				DisplayableCard card = solution.getCardAt(j, i);
+				String imagePath = card.getImagePath();
+				hBox.getChildren().add(createImageView(imagePath));
 			}
 		}
+	}
+
+	private Node createImageView(String imagePath) {
+		// @formatter:off
+		return new ImageViewCreator()
+			.setFileName(imagePath)
+			.setHeight(150)
+			.createImageView();
+		// @formatter:on
 	}
 
 }

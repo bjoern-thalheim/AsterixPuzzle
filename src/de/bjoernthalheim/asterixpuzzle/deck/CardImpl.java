@@ -12,16 +12,6 @@ import de.bjoernthalheim.asterixpuzzle.solution.Orientation;
  */
 public class CardImpl implements Card {
 
-	public static final CardImpl NOTHING;
-
-	static {
-		NOTHING = new CardImpl();
-		NOTHING.edges.put(Orientation.NORTH, FigureAndHalf.NOTHING);
-		NOTHING.edges.put(Orientation.EAST, FigureAndHalf.NOTHING);
-		NOTHING.edges.put(Orientation.SOUTH, FigureAndHalf.NOTHING);
-		NOTHING.edges.put(Orientation.WEST, FigureAndHalf.NOTHING);
-	}
-
 	private final Map<Orientation, FigureAndHalf> edges;
 
 	/**
@@ -123,14 +113,19 @@ public class CardImpl implements Card {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
 		CardImpl other = (CardImpl) obj;
 		if (edges == null) {
 			if (other.edges != null)
 				return false;
-		} else if (!edges.equals(other.edges))
-			return false;
+		} else {
+			for (Orientation orientation : Orientation.values()) {
+				if (!other.getEdge(orientation).equals(this.getEdge(orientation))) {
+					return false;
+				}
+			}
+		}
 		return true;
 	}
 
