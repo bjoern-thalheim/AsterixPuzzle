@@ -12,7 +12,7 @@ import de.bjoernthalheim.asterixpuzzle.deck.FigureAndHalf;
  * 
  * @author bjoern
  */
-public class ThreeTimesThreeCardGrid implements CardGrid {
+public class ThreeTimesThreeCardGrid implements IndexableCardGrid {
 
 	private static final int EDGELENGTH = 3;
 
@@ -97,19 +97,6 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 			return FigureAndHalf.NOTHING;
 		}
 		return this.cardsInGrid[yn][xn].getEdge(orientation.opposite());
-	}
-
-	@Override
-	public CardGrid defensiveCopy() {
-		ThreeTimesThreeCardGrid result = new ThreeTimesThreeCardGrid();
-		for (int counter = 0; counter < EDGELENGTH * EDGELENGTH; counter++) {
-			Card cell = getCardInIndex(counter);
-			if (!result.putOntoNextFreePositionSuccessful(cell, Orientation.NORTH)) {
-				throw new RuntimeException("Totally unexpected: yould not put card from a valid grid into a new grid.");
-			}
-		}
-		result.positionCounter = this.positionCounter;
-		return result;
 	}
 
 	private Card getCardInIndex(int counter) {
@@ -227,5 +214,19 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 	@Override
 	public Card getCardAt(int x, int y) {
 		return this.cardsInGrid[y][x];
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public IndexableCardGrid defensiveCopy() {
+		ThreeTimesThreeCardGrid result = new ThreeTimesThreeCardGrid();
+		for (int counter = 0; counter < EDGELENGTH * EDGELENGTH; counter++) {
+			Card cell = getCardInIndex(counter);
+			if (!result.putOntoNextFreePositionSuccessful(cell, Orientation.NORTH)) {
+				throw new RuntimeException("Totally unexpected: yould not put card from a valid grid into a new grid.");
+			}
+		}
+		result.positionCounter = this.positionCounter;
+		return result;
 	}
 }

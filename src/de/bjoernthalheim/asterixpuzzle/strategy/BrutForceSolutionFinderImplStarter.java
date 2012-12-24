@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import de.bjoernthalheim.asterixpuzzle.deck.Deck;
 import de.bjoernthalheim.asterixpuzzle.solution.CardGrid;
+import de.bjoernthalheim.asterixpuzzle.solution.IndexableCardGrid;
 import de.bjoernthalheim.asterixpuzzle.solution.ThreeTimesThreeCardGrid;
 
 public class BrutForceSolutionFinderImplStarter extends Application {
@@ -27,20 +28,20 @@ public class BrutForceSolutionFinderImplStarter extends Application {
 		BrutForceSolutionFinderImpl impl = new BrutForceSolutionFinderImpl();
 		// init deck, grid and empty solution list.
 		Deck deck = new DeckCreator().createNewDeck();
-		CardGrid grid = new ThreeTimesThreeCardGrid();
-		List<CardGrid> allSolutions = new ArrayList<CardGrid>();
+		IndexableCardGrid grid = new ThreeTimesThreeCardGrid();
+		List<IndexableCardGrid> allSolutions = new ArrayList<IndexableCardGrid>();
 		// recursion start.
 		impl.findAllSolutions(allSolutions, deck, grid);
 		// find really distinct solutions
-		List<CardGrid> solutions = impl.removeIsomorphicSolutions(allSolutions);
+		List<IndexableCardGrid> solutions = impl.removeIsomorphicSolutions(allSolutions);
 		// Solution presentation.
 		System.out.println(solutions.size() + " solutions found: ");
 		// As long as we don't have a graphical representation, we need to output this stuff somehow
-		for (CardGrid solution : solutions) {
+		for (IndexableCardGrid solution : solutions) {
 			System.out.println(solution);
 			// JavaFX stuff
 			Scene scene = new SolutionJFXVisualizer(solution).createRootAndScene();
-			primaryStage.setTitle("Hello World!");
+			primaryStage.setTitle("Asterix Puzzle Solution");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		}

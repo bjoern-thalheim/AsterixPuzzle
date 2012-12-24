@@ -15,12 +15,12 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 	 * empty slot on the grid. If the card fits, recurse further. If not, return an empty list.
 	 */
 	@Override
-	public void findAllSolutions(List<CardGrid> solutions, Deck deck, CardGrid grid) {
+	public <T extends CardGrid> void findAllSolutions(List<T> solutions, Deck deck, T grid) {
 		for (Card card : deck.getCards()) {
 			Deck deckCopy = deck.defensiveCopy();
 			deckCopy.take(card);
 			for (Orientation orientation : Orientation.values()) {
-				CardGrid gridCopy = grid.defensiveCopy();
+				T gridCopy = grid.defensiveCopy();
 				if (gridCopy.putOntoNextFreePositionSuccessful(card, orientation)) {
 					if (gridCopy.isFull()) {
 						solutions.add(gridCopy);
@@ -32,15 +32,16 @@ public class BrutForceSolutionFinderImpl implements SolutionFinder {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<CardGrid> removeIsomorphicSolutions(List<CardGrid> solutions) {
+	public <T extends CardGrid> List<T> removeIsomorphicSolutions(List<T> solutions) {
 		List<CardGrid> result = new ArrayList<CardGrid>();
 		for (CardGrid solution : solutions) {
 			if (!containsIsomorphicSolutions(result, solution)) {
 				result.add(solution);
 			}
 		}
-		return result;
+		return (List<T>) result;
 	}
 
 	private boolean containsIsomorphicSolutions(List<CardGrid> result, CardGrid solutionToInsert) {

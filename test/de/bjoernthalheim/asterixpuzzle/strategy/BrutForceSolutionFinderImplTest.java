@@ -39,16 +39,6 @@ public class BrutForceSolutionFinderImplTest {
 		}
 
 		@Override
-		public CardGrid defensiveCopy() {
-			Test2By1Grid result = new Test2By1Grid();
-			if (null != firstCard)
-				result.putOntoNextFreePositionSuccessful(firstCard, Orientation.NORTH);
-			if (null != secondCard)
-				result.putOntoNextFreePositionSuccessful(secondCard, Orientation.NORTH);
-			return result;
-		}
-
-		@Override
 		public boolean isFull() {
 			return secondCard != null;
 		}
@@ -119,15 +109,16 @@ public class BrutForceSolutionFinderImplTest {
 			return true;
 		}
 
+		@SuppressWarnings("unchecked")
 		@Override
-		public Card getCardAt(int x, int y) {
-			if (x == 0) {
-				return firstCard;
-			} else {
-				return secondCard;
-			}
+		public CardGrid defensiveCopy() {
+			CardGrid result = new Test2By1Grid();
+			if (null != firstCard)
+				result.putOntoNextFreePositionSuccessful(firstCard, Orientation.NORTH);
+			if (null != secondCard)
+				result.putOntoNextFreePositionSuccessful(secondCard, Orientation.NORTH);
+			return result;
 		}
-
 	}
 
 	/**

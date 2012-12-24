@@ -18,10 +18,11 @@ public interface CardGrid {
 
 	/**
 	 * Create a copy of this grid.
+	 * @param <T>
 	 * 
 	 * @return A copy of this grid.
 	 */
-	CardGrid defensiveCopy();
+	<T extends CardGrid> T defensiveCopy();
 
 	/**
 	 * Tell if all blank spaces in the grid have been filled.
@@ -38,13 +39,4 @@ public interface CardGrid {
 	 * @return <code>true</code> if this grid and the other grid look exactly the same.
 	 */
 	boolean isIsomorphic(CardGrid otherGrid);
-
-	/**
-	 * Get the desired Card at the given index.
-	 * 
-	 * @param x horizontal coordinate.
-	 * @param y vertical coordinate.
-	 * @return The card at this position.
-	 */
-	Card getCardAt(int x, int y);
 }
