@@ -3,11 +3,14 @@ package de.bjoernthalheim.asterixpuzzle.strategy;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import de.bjoernthalheim.asterixpuzzle.deck.Deck;
 import de.bjoernthalheim.asterixpuzzle.solution.CardGrid;
 import de.bjoernthalheim.asterixpuzzle.solution.ThreeTimesThreeCardGrid;
 
-public class BrutForceSolutionFinderImplStarter {
+public class BrutForceSolutionFinderImplStarter extends Application {
 
 	/**
 	 * Recursion start. Take the full deck and an empty grid and pass that into the recursion.
@@ -16,6 +19,11 @@ public class BrutForceSolutionFinderImplStarter {
 	 *            ignored.
 	 */
 	public static void main(String[] args) {
+		launch(args);
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
 		BrutForceSolutionFinderImpl impl = new BrutForceSolutionFinderImpl();
 		// init deck, grid and empty solution list.
 		Deck deck = new DeckCreator().createNewDeck();
@@ -30,6 +38,11 @@ public class BrutForceSolutionFinderImplStarter {
 		// As long as we don't have a graphical representation, we need to output this stuff somehow
 		for (CardGrid solution : solutions) {
 			System.out.println(solution);
+			// JavaFX stuff
+			Scene scene = new SolutionJFXVisualizer(solution).createRootAndScene();
+			primaryStage.setTitle("Hello World!");
+			primaryStage.setScene(scene);
+			primaryStage.show();
 		}
 	}
 

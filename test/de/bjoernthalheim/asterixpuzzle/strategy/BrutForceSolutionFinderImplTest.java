@@ -22,7 +22,7 @@ public class BrutForceSolutionFinderImplTest {
 
 		private int counter = 0;
 
-		Card firstCard, secondCard;
+		private Card firstCard, secondCard;
 
 		@Override
 		public boolean putOntoNextFreePositionSuccessful(Card card, Orientation orientation) {
@@ -117,6 +117,15 @@ public class BrutForceSolutionFinderImplTest {
 				}
 			}
 			return true;
+		}
+
+		@Override
+		public Card getCardAt(int x, int y) {
+			if (x == 0) {
+				return firstCard;
+			} else {
+				return secondCard;
+			}
 		}
 
 	}

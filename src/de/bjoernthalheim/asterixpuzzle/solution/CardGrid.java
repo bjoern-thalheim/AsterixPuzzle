@@ -38,4 +38,13 @@ public interface CardGrid {
 	 * @return <code>true</code> if this grid and the other grid look exactly the same.
 	 */
 	boolean isIsomorphic(CardGrid otherGrid);
+
+	/**
+	 * Get the desired Card at the given index.
+	 * 
+	 * @param x horizontal coordinate.
+	 * @param y vertical coordinate.
+	 * @return The card at this position.
+	 */
+	Card getCardAt(int x, int y);
 }

@@ -219,4 +219,13 @@ public class ThreeTimesThreeCardGrid implements CardGrid {
 		}
 		return true;
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see de.bjoernthalheim.asterixpuzzle.solution.CardGrid#getCardAt(int, int)
+	 */
+	@Override
+	public Card getCardAt(int x, int y) {
+		return this.cardsInGrid[y][x];
+	}
 }
