@@ -7,10 +7,8 @@ import org.junit.Test;
 
 public class DisplayableCardImplTest {
 
-	/**
-	 * Class under Test.
-	 */
 	private DisplayableCardImpl card;
+	
 	private String imagePath = "asdfghjkl";
 
 	@Before

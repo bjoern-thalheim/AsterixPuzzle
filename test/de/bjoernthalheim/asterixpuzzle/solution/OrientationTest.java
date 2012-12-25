@@ -12,10 +12,13 @@ public class OrientationTest {
 		assertEquals(Orientation.EAST, Orientation.WEST.opposite());
 		assertEquals(Orientation.SOUTH, Orientation.NORTH.opposite());
 		assertEquals(Orientation.WEST, Orientation.EAST.opposite());
+	}
+	
+	@Test
+	public void testOppositeOpposite() {
 		assertEquals(Orientation.NORTH, Orientation.NORTH.opposite().opposite());
 		assertEquals(Orientation.EAST, Orientation.EAST.opposite().opposite());
 		assertEquals(Orientation.SOUTH, Orientation.SOUTH.opposite().opposite());
 		assertEquals(Orientation.WEST, Orientation.WEST.opposite().opposite());
 	}
-
 }

@@ -24,7 +24,7 @@ public class BrutForceSolutionFinderImplStarter extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		BrutForceSolutionFinderImpl impl = new BrutForceSolutionFinderImpl();
+		BruteForceSolutionFinderImpl impl = new BruteForceSolutionFinderImpl();
 		// init deck, grid and empty solution list.
 		Deck deck = new DeckCreator().createNewDeck();
 		DisplayableCardGrid grid = new ThreeTimesThreeCardGrid();

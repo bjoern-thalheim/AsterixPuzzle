@@ -161,22 +161,22 @@ public class ThreeTimesThreeCardGrid implements DisplayableCardGrid {
 			// 0 1 2
 			// 3 4 5
 			// 6 7 8
-			return Arrays.asList(0,1,2,3,4,5,6,7,8);
+			return Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8);
 		case EAST:
 			// 6 3 0
 			// 7 4 1
 			// 8 5 2
-			return Arrays.asList(6,3,0,7,4,1,8,5,2);
+			return Arrays.asList(6, 3, 0, 7, 4, 1, 8, 5, 2);
 		case SOUTH:
 			// 8 7 6
 			// 5 4 3
 			// 2 1 0
-			return Arrays.asList(8,7,6,5,4,3,2,1,0);
+			return Arrays.asList(8, 7, 6, 5, 4, 3, 2, 1, 0);
 		case WEST:
 			// 2 5 8
 			// 1 4 7
 			// 0 3 6
-			return Arrays.asList(2,5,8,1,4,7,0,3,6);
+			return Arrays.asList(2, 5, 8, 1, 4, 7, 0, 3, 6);
 		}
 		throw new RuntimeException(orientation + " has not been anticipated here.");
 	}
@@ -212,6 +212,7 @@ public class ThreeTimesThreeCardGrid implements DisplayableCardGrid {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see de.bjoernthalheim.asterixpuzzle.solution.CardGrid#getCardAt(int, int)
 	 */
 	@Override
@@ -226,6 +227,7 @@ public class ThreeTimesThreeCardGrid implements DisplayableCardGrid {
 		for (int counter = 0; counter < EDGELENGTH * EDGELENGTH; counter++) {
 			Card cell = getCardInIndex(counter);
 			if (!result.putOntoNextFreePositionSuccessful(cell, Orientation.NORTH)) {
+				// This is a sanity check and cannot happen, unless some error is somewhere else.
 				throw new RuntimeException("Totally unexpected: yould not put card from a valid grid into a new grid.");
 			}
 		}

@@ -1,6 +1,6 @@
 package de.bjoernthalheim.asterixpuzzle.solution;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,21 +12,27 @@ import de.bjoernthalheim.asterixpuzzle.deck.CardImpl;
 public class ThreeTimesThreeCardGridTest {
 
 	private ThreeTimesThreeCardGrid grid;
-	
+
 	@Before
 	public void setup() {
 		this.grid = new ThreeTimesThreeCardGrid();
 	}
-	
+
+	/**
+	 * Since we are using {@link ThreeTimesThreeCardGrid#putOntoNextFreePositionSuccessful(Card, Orientation)} to create a defensive copy of an existing grid, and
+	 * {@link ThreeTimesThreeCardGrid#putOntoNextFreePositionSuccessful(Card, Orientation)} validates that everything fits,
+	 * {@link ThreeTimesThreeCardGrid#defensiveCopy()} could throw an exeption if something goes wrong.
+	 */
 	@Test
 	public void testDefensiveCopy() {
 		Card card = new CardImpl("atmtatat");
-		grid.putOntoNextFreePositionSuccessful(card , Orientation.NORTH);
+		grid.putOntoNextFreePositionSuccessful(card, Orientation.NORTH);
 		Card card2 = new CardImpl("otototmb");
 		grid.putOntoNextFreePositionSuccessful(card2, Orientation.NORTH);
+		// a runtime exception would occur on the next statement of someting was wrong.
 		grid.defensiveCopy();
 	}
-	
+
 	@Test
 	public void testFindIsomorphicGrid() {
 		ThreeTimesThreeCardGrid grid1 = new ThreeTimesThreeCardGrid();
@@ -38,10 +44,10 @@ public class ThreeTimesThreeCardGridTest {
 		grid2.putOntoNextFreePositionSuccessful(cornerCard, Orientation.EAST);
 		assertTrue(grid1.isIsomorphic(grid2));
 	}
-	
+
 	@Test
 	public void testFindIsomorphicGridComplex() {
-		// Grid 1: 
+		// Grid 1:
 		// [MTLTABOB, ATOTABLB, MTATMBOB ]
 		// [ATLTMBOB, ATLTMBLB, MTOTABLB ]
 		// [MTATOBLB, MTOTOBAB, ATMTLBOB ]

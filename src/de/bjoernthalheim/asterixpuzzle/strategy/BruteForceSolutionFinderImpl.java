@@ -8,7 +8,7 @@ import de.bjoernthalheim.asterixpuzzle.deck.Deck;
 import de.bjoernthalheim.asterixpuzzle.solution.CardGrid;
 import de.bjoernthalheim.asterixpuzzle.solution.Orientation;
 
-public class BrutForceSolutionFinderImpl implements SolutionFinder {
+public class BruteForceSolutionFinderImpl implements SolutionFinder {
 
 	/**
 	 * Recursion - take a partially filled grid, a nonempty deck. Take a card from the deck and try to fit it into the next
