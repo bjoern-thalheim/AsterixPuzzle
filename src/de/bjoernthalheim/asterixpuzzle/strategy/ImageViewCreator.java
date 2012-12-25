@@ -15,6 +15,7 @@ public class ImageViewCreator {
 		// @formatter:off
 		includeImageInImageView	(product);
 		scaleImageView			(product);
+		rotateImage				(product);
 		// @formatter:on
 		return product;
 	}
@@ -39,6 +40,13 @@ public class ImageViewCreator {
 		this.keepRatioWhenResizing = keepRatioWhenResizing;
 		return this;
 	}
+	
+	private long rotation = 0;
+
+	public ImageViewCreator setRotate(long rotation) {
+		this.rotation = rotation;
+		return this;
+	}
 
 	private ImageView includeImageInImageView(ImageView imageView) {
 		Image image = new Image(fileName);
@@ -49,6 +57,11 @@ public class ImageViewCreator {
 	private ImageView scaleImageView(ImageView image) {
 		image.setFitHeight(height);
 		image.setPreserveRatio(keepRatioWhenResizing);
+		return image;
+	}
+
+	private ImageView rotateImage(ImageView image) {
+		image.setRotate(this.rotation);
 		return image;
 	}
 }

@@ -7,6 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import de.bjoernthalheim.asterixpuzzle.solution.DisplayableCardGrid;
+import de.bjoernthalheim.asterixpuzzle.solution.Orientation;
 
 public class SolutionJFXVisualizer {
 
@@ -51,16 +52,33 @@ public class SolutionJFXVisualizer {
 			for (int j = 0; j < GRID_EDGE_LENGTH; j++) {
 				DisplayableCard card = solution.getCardAt(j, i);
 				String imagePath = card.getImagePath();
-				hBox.getChildren().add(createImageView(imagePath));
+				Orientation orientation = card.getOrientation();
+				hBox.getChildren().add(createImageView(imagePath, calculateRotation(orientation)));
 			}
 		}
 	}
 
-	private Node createImageView(String imagePath) {
+	long calculateRotation(Orientation orientation) {
+		switch (orientation) {
+		case NORTH:
+			return 0;
+		case EAST:
+			return 90;
+		case SOUTH:
+			return 180;
+		case WEST:
+			return 270;
+		default:
+			return 0;
+		}
+	}
+
+	private Node createImageView(String imagePath, long rotation) {
 		// @formatter:off
 		return new ImageViewCreator()
 			.setFileName(imagePath)
 			.setHeight(150)
+			.setRotate(rotation)
 			.createImageView();
 		// @formatter:on
 	}

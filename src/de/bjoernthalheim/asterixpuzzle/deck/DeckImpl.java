@@ -3,6 +3,8 @@ package de.bjoernthalheim.asterixpuzzle.deck;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.bjoernthalheim.asterixpuzzle.solution.DisplayableCardImpl;
+
 /**
  * Implementation for a deck of cards.
  * 
@@ -29,7 +31,7 @@ public class DeckImpl implements Deck {
 	 *            The card which will be added.
 	 */
 	public void addCard(Card card) {
-		CardImpl defensiveCopy = new CardImpl(card);
+		DisplayableCardImpl defensiveCopy = new DisplayableCardImpl(card);
 		this.cards.add(defensiveCopy);
 	}
 

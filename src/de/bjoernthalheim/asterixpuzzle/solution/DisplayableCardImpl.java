@@ -7,19 +7,32 @@ import de.bjoernthalheim.asterixpuzzle.strategy.DisplayableCard;
 public class DisplayableCardImpl extends CardImpl implements DisplayableCard {
 
 	private String imagePath;
-	private Orientation orientation;
+
+	/**
+	 * Neutral orientation is NORTH.
+	 */
+	private Orientation orientation = Orientation.NORTH;
 
 	public DisplayableCardImpl(Card card) {
 		super(card);
+		if (card instanceof DisplayableCard) {
+			this.setImagePath(((DisplayableCard) card).getImagePath());
+		}
 	}
 
-	public DisplayableCardImpl(Card card, Orientation orientation) {
-		super(card, orientation);
-		recalculateOrientation(card, orientation);
+	public DisplayableCardImpl(Card card, Orientation newOrientation) {
+		super(card, newOrientation);
+		if (card instanceof DisplayableCardImpl) {
+			this.orientation = ((DisplayableCardImpl) card).getOrientation();
+		}
+		if (card instanceof DisplayableCard) {
+			this.setImagePath(((DisplayableCard) card).getImagePath());
+		}
+		recalculateOrientation(newOrientation);
 	}
 
-	private void recalculateOrientation(Card card, Orientation orientation) {
-		this.orientation = orientation;
+	private void recalculateOrientation(Orientation orientation) {
+		this.orientation = this.orientation.plus(orientation);
 	}
 
 	public DisplayableCardImpl(String spec) {
@@ -35,7 +48,7 @@ public class DisplayableCardImpl extends CardImpl implements DisplayableCard {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return super.hashCode();
@@ -45,7 +58,9 @@ public class DisplayableCardImpl extends CardImpl implements DisplayableCard {
 	public boolean equals(Object obj) {
 		return super.equals(obj);
 	}
-	
-	
 
+	@Override
+	public Orientation getOrientation() {
+		return orientation;
+	}
 }
