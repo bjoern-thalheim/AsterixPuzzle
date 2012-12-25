@@ -1,6 +1,6 @@
-package de.bjoernthalheim.asterixpuzzle.solution;
+package de.bjoernthalheim.asterixpuzzle.grids;
 
-import de.bjoernthalheim.asterixpuzzle.strategy.DisplayableCard;
+import de.bjoernthalheim.asterixpuzzle.deck.DisplayableCard;
 
 public interface DisplayableCardGrid extends CardGrid {
 

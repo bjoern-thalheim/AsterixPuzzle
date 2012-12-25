@@ -1,4 +1,4 @@
-package de.bjoernthalheim.asterixpuzzle.strategy;
+package de.bjoernthalheim.asterixpuzzle.jfx;
 
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -6,8 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import de.bjoernthalheim.asterixpuzzle.solution.DisplayableCardGrid;
-import de.bjoernthalheim.asterixpuzzle.solution.Orientation;
+import de.bjoernthalheim.asterixpuzzle.deck.DisplayableCard;
+import de.bjoernthalheim.asterixpuzzle.elements.Orientation;
+import de.bjoernthalheim.asterixpuzzle.grids.DisplayableCardGrid;
 
 public class SolutionJFXVisualizer {
 

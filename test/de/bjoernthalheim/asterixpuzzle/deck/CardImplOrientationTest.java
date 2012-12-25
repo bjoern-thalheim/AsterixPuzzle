@@ -1,4 +1,4 @@
-package de.bjoernthalheim.asterixpuzzle.solution;
+package de.bjoernthalheim.asterixpuzzle.deck;
 
 import static org.junit.Assert.assertEquals;
 
@@ -7,13 +7,14 @@ import org.junit.Test;
 
 import de.bjoernthalheim.asterixpuzzle.deck.Card;
 import de.bjoernthalheim.asterixpuzzle.deck.CardImpl;
+import de.bjoernthalheim.asterixpuzzle.elements.Orientation;
 
 /**
  * Test that the rotation of a card can be done well.
  * 
  * @author bjoern
  */
-public class CardAndOrientationTest {
+public class CardImplOrientationTest {
 
 	/**
 	 * The card which shall be used as the base of our test.

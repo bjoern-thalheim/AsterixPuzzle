@@ -1,4 +1,4 @@
-package de.bjoernthalheim.asterixpuzzle.strategy;
+package de.bjoernthalheim.asterixpuzzle.starter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,11 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import de.bjoernthalheim.asterixpuzzle.deck.Deck;
-import de.bjoernthalheim.asterixpuzzle.solution.DisplayableCardGrid;
-import de.bjoernthalheim.asterixpuzzle.solution.ThreeTimesThreeCardGrid;
+import de.bjoernthalheim.asterixpuzzle.deck.DisplayableDeckCreator;
+import de.bjoernthalheim.asterixpuzzle.grids.DisplayableCardGrid;
+import de.bjoernthalheim.asterixpuzzle.grids.ThreeTimesThreeCardGrid;
+import de.bjoernthalheim.asterixpuzzle.jfx.SolutionJFXVisualizer;
+import de.bjoernthalheim.asterixpuzzle.strategy.BruteForceSolutionFinderImpl;
 
 /**
  * Simple class to start a JavaFX {@link Application} which then starts the recursion algorithm as well as the graphical

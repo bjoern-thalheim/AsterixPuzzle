@@ -4,7 +4,9 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import de.bjoernthalheim.asterixpuzzle.solution.Orientation;
+import de.bjoernthalheim.asterixpuzzle.elements.Figure;
+import de.bjoernthalheim.asterixpuzzle.elements.Half;
+import de.bjoernthalheim.asterixpuzzle.elements.Orientation;
 
 /**
  * Testcase for {@link CardImpl}. The only relevant logic in there is the instantiation strategy.

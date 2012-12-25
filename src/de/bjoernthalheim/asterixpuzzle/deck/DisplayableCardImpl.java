@@ -1,8 +1,7 @@
-package de.bjoernthalheim.asterixpuzzle.solution;
+package de.bjoernthalheim.asterixpuzzle.deck;
 
 import de.bjoernthalheim.asterixpuzzle.deck.Card;
-import de.bjoernthalheim.asterixpuzzle.deck.CardImpl;
-import de.bjoernthalheim.asterixpuzzle.strategy.DisplayableCard;
+import de.bjoernthalheim.asterixpuzzle.elements.Orientation;
 
 public class DisplayableCardImpl extends CardImpl implements DisplayableCard {
 

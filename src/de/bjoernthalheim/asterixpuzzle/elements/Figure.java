@@ -1,4 +1,4 @@
-package de.bjoernthalheim.asterixpuzzle.deck;
+package de.bjoernthalheim.asterixpuzzle.elements;
 
 /**
  * Enum of all four figures used in the puzzle.

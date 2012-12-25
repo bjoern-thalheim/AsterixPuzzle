@@ -1,7 +1,7 @@
 package de.bjoernthalheim.asterixpuzzle.deck;
 
-import de.bjoernthalheim.asterixpuzzle.solution.DisplayableCardImpl;
-import de.bjoernthalheim.asterixpuzzle.solution.Orientation;
+import de.bjoernthalheim.asterixpuzzle.elements.FigureAndHalf;
+import de.bjoernthalheim.asterixpuzzle.elements.Orientation;
 
 public class BlankCard extends DisplayableCardImpl {
 

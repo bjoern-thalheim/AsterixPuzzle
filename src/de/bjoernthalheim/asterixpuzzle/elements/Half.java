@@ -1,4 +1,4 @@
-package de.bjoernthalheim.asterixpuzzle.deck;
+package de.bjoernthalheim.asterixpuzzle.elements;
 
 /**
  * One side of a card shows either a bottom or a top half of a figure.

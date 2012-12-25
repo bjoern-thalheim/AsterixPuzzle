@@ -5,8 +5,8 @@ import java.util.List;
 
 import de.bjoernthalheim.asterixpuzzle.deck.Card;
 import de.bjoernthalheim.asterixpuzzle.deck.Deck;
-import de.bjoernthalheim.asterixpuzzle.solution.CardGrid;
-import de.bjoernthalheim.asterixpuzzle.solution.Orientation;
+import de.bjoernthalheim.asterixpuzzle.elements.Orientation;
+import de.bjoernthalheim.asterixpuzzle.grids.CardGrid;
 
 public class BruteForceSolutionFinderImpl implements SolutionFinder {
 

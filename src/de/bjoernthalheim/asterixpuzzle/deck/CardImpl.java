@@ -3,7 +3,10 @@ package de.bjoernthalheim.asterixpuzzle.deck;
 import java.util.HashMap;
 import java.util.Map;
 
-import de.bjoernthalheim.asterixpuzzle.solution.Orientation;
+import de.bjoernthalheim.asterixpuzzle.elements.Figure;
+import de.bjoernthalheim.asterixpuzzle.elements.FigureAndHalf;
+import de.bjoernthalheim.asterixpuzzle.elements.Half;
+import de.bjoernthalheim.asterixpuzzle.elements.Orientation;
 
 /**
  * Implementation of a card.
@@ -77,7 +80,7 @@ public class CardImpl implements Card {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see de.bjoernthalheim.asterixpuzzle.deck.Card#getEdge(de.bjoernthalheim.asterixpuzzle.solution.Orientation)
+	 * @see de.bjoernthalheim.asterixpuzzle.deck.Card#getEdge(de.bjoernthalheim.asterixpuzzle.grids.Orientation)
 	 */
 	@Override
 	public FigureAndHalf getEdge(Orientation orientation) {

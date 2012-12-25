@@ -2,9 +2,9 @@ package de.bjoernthalheim.asterixpuzzle.strategy;
 
 import de.bjoernthalheim.asterixpuzzle.deck.Card;
 import de.bjoernthalheim.asterixpuzzle.deck.CardImpl;
-import de.bjoernthalheim.asterixpuzzle.deck.FigureAndHalf;
-import de.bjoernthalheim.asterixpuzzle.solution.CardGrid;
-import de.bjoernthalheim.asterixpuzzle.solution.Orientation;
+import de.bjoernthalheim.asterixpuzzle.elements.FigureAndHalf;
+import de.bjoernthalheim.asterixpuzzle.elements.Orientation;
+import de.bjoernthalheim.asterixpuzzle.grids.CardGrid;
 
 public class Test2By1Grid implements CardGrid {
 

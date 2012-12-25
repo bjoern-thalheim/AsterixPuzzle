@@ -1,6 +1,7 @@
-package de.bjoernthalheim.asterixpuzzle.solution;
+package de.bjoernthalheim.asterixpuzzle.grids;
 
 import de.bjoernthalheim.asterixpuzzle.deck.Card;
+import de.bjoernthalheim.asterixpuzzle.elements.Orientation;
 
 public interface CardGrid {
 

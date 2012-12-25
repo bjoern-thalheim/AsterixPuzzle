@@ -3,7 +3,6 @@ package de.bjoernthalheim.asterixpuzzle.deck;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.bjoernthalheim.asterixpuzzle.solution.DisplayableCardImpl;
 
 /**
  * Implementation for a deck of cards.

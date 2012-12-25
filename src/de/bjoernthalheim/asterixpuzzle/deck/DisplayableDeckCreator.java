@@ -1,8 +1,6 @@
-package de.bjoernthalheim.asterixpuzzle.strategy;
+package de.bjoernthalheim.asterixpuzzle.deck;
 
 import de.bjoernthalheim.asterixpuzzle.deck.Deck;
-import de.bjoernthalheim.asterixpuzzle.deck.DeckImpl;
-import de.bjoernthalheim.asterixpuzzle.solution.DisplayableCardImpl;
 
 /**
  * Create the normal puzzle deck.

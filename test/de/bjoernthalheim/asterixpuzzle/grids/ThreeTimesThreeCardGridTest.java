@@ -1,4 +1,4 @@
-package de.bjoernthalheim.asterixpuzzle.solution;
+package de.bjoernthalheim.asterixpuzzle.grids;
 
 import static org.junit.Assert.assertTrue;
 
@@ -8,6 +8,8 @@ import org.junit.Test;
 import de.bjoernthalheim.asterixpuzzle.deck.BlankCard;
 import de.bjoernthalheim.asterixpuzzle.deck.Card;
 import de.bjoernthalheim.asterixpuzzle.deck.CardImpl;
+import de.bjoernthalheim.asterixpuzzle.elements.Orientation;
+import de.bjoernthalheim.asterixpuzzle.grids.ThreeTimesThreeCardGrid;
 
 public class ThreeTimesThreeCardGridTest {
 

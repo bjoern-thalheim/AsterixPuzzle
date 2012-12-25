@@ -1,4 +1,4 @@
-package de.bjoernthalheim.asterixpuzzle.solution;
+package de.bjoernthalheim.asterixpuzzle.elements;
 
 /**
  * Enum with all four geographic directions. Is used to characterize the rotation of a card.

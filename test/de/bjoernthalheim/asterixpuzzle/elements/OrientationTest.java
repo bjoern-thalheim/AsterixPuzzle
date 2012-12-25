@@ -1,8 +1,10 @@
-package de.bjoernthalheim.asterixpuzzle.solution;
+package de.bjoernthalheim.asterixpuzzle.elements;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+
+import de.bjoernthalheim.asterixpuzzle.elements.Orientation;
 
 public class OrientationTest {
 

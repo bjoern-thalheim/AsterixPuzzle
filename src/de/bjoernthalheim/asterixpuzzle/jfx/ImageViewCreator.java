@@ -1,4 +1,4 @@
-package de.bjoernthalheim.asterixpuzzle.strategy;
+package de.bjoernthalheim.asterixpuzzle.jfx;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

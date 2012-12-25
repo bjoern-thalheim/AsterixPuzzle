@@ -1,8 +1,12 @@
-package de.bjoernthalheim.asterixpuzzle.deck;
+package de.bjoernthalheim.asterixpuzzle.elements;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import de.bjoernthalheim.asterixpuzzle.elements.Figure;
+import de.bjoernthalheim.asterixpuzzle.elements.FigureAndHalf;
+import de.bjoernthalheim.asterixpuzzle.elements.Half;
 
 public class FigureAndHalfTest {
 

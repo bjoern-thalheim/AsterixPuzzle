@@ -11,7 +11,7 @@ import org.junit.Test;
 import de.bjoernthalheim.asterixpuzzle.deck.CardImpl;
 import de.bjoernthalheim.asterixpuzzle.deck.Deck;
 import de.bjoernthalheim.asterixpuzzle.deck.DeckImpl;
-import de.bjoernthalheim.asterixpuzzle.solution.CardGrid;
+import de.bjoernthalheim.asterixpuzzle.grids.CardGrid;
 
 public class BruteForceSolutionFinderImplTest {
 

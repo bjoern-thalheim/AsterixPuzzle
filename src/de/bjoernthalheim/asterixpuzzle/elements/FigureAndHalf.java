@@ -1,6 +1,7 @@
-package de.bjoernthalheim.asterixpuzzle.deck;
+package de.bjoernthalheim.asterixpuzzle.elements;
 
 import java.io.Serializable;
+
 
 /**
  * Compound enum representing the edge of a card.

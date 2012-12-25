@@ -1,9 +1,12 @@
-package de.bjoernthalheim.asterixpuzzle.solution;
+package de.bjoernthalheim.asterixpuzzle.deck;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import de.bjoernthalheim.asterixpuzzle.deck.DisplayableCardImpl;
+import de.bjoernthalheim.asterixpuzzle.elements.Orientation;
 
 public class DisplayableCardImplTest {
 

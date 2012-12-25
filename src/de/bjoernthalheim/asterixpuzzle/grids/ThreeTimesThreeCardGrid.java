@@ -1,12 +1,16 @@
-package de.bjoernthalheim.asterixpuzzle.solution;
+package de.bjoernthalheim.asterixpuzzle.grids;
 
 import java.util.Arrays;
 import java.util.List;
 
 import de.bjoernthalheim.asterixpuzzle.deck.BlankCard;
 import de.bjoernthalheim.asterixpuzzle.deck.Card;
-import de.bjoernthalheim.asterixpuzzle.deck.FigureAndHalf;
-import de.bjoernthalheim.asterixpuzzle.strategy.DisplayableCard;
+import de.bjoernthalheim.asterixpuzzle.deck.DisplayableCard;
+import de.bjoernthalheim.asterixpuzzle.deck.DisplayableCardImpl;
+import de.bjoernthalheim.asterixpuzzle.elements.FigureAndHalf;
+import de.bjoernthalheim.asterixpuzzle.elements.Orientation;
+import de.bjoernthalheim.asterixpuzzle.grids.CardGrid;
+import de.bjoernthalheim.asterixpuzzle.grids.DisplayableCardGrid;
 
 /**
  * A Grid consisting of three times three cards.
@@ -35,8 +39,8 @@ public class ThreeTimesThreeCardGrid implements DisplayableCardGrid {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see de.bjoernthalheim.asterixpuzzle.solution.CardGrid#put(de.bjoernthalheim.asterixpuzzle.deck.Card,
-	 * de.bjoernthalheim.asterixpuzzle.solution.Orientation)
+	 * @see de.bjoernthalheim.asterixpuzzle.grids.CardGrid#put(de.bjoernthalheim.asterixpuzzle.deck.Card,
+	 * de.bjoernthalheim.asterixpuzzle.grids.Orientation)
 	 */
 	@Override
 	public <T extends Card> boolean putOntoNextFreePositionSuccessful(T card, Orientation orientation) {
@@ -213,7 +217,7 @@ public class ThreeTimesThreeCardGrid implements DisplayableCardGrid {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see de.bjoernthalheim.asterixpuzzle.solution.CardGrid#getCardAt(int, int)
+	 * @see de.bjoernthalheim.asterixpuzzle.grids.CardGrid#getCardAt(int, int)
 	 */
 	@Override
 	public DisplayableCard getCardAt(int x, int y) {
