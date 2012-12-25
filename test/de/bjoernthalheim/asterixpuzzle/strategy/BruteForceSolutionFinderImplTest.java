@@ -34,7 +34,7 @@ public class BruteForceSolutionFinderImplTest {
 		List<CardGrid> solutions = new ArrayList<CardGrid>(1);
 		strategy.findAllSolutions(solutions, deck, grid);
 		solutions = strategy.removeIsomorphicSolutions(solutions);
-		assertEquals(grid.toString(), 2, solutions.size());
+		assertEquals(grid.toString(), 1, solutions.size());
 	}
 
 	@Test
@@ -46,6 +46,6 @@ public class BruteForceSolutionFinderImplTest {
 		List<CardGrid> solutions = new ArrayList<CardGrid>(1);
 		strategy.findAllSolutions(solutions, deck, grid);
 		solutions = strategy.removeIsomorphicSolutions(solutions);
-		assertEquals(solutions.toString(), 2, solutions.size());
+		assertEquals(1, solutions.size());
 	}
 }

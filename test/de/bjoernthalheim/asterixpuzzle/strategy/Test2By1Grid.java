@@ -94,19 +94,20 @@ public class Test2By1Grid implements CardGrid {
 	}
 
 	private boolean mirrorEquals(Test2By1Grid otherGrid) {
-		for (Orientation orientation : Orientation.values()) {
-			FigureAndHalf myFirstCardEdge = firstCard.getEdge(orientation);
-			FigureAndHalf otherFirstCardOppositeEdge = otherGrid.firstCard.getEdge(orientation.opposite());
-			FigureAndHalf mySecondCardEdge = secondCard.getEdge(orientation);
-			FigureAndHalf otherSecondCardOppositeEdge = otherGrid.secondCard.getEdge(orientation.opposite());
-			if (!myFirstCardEdge.equals(otherFirstCardOppositeEdge)) {
-				return false;
-			}
-			if (!mySecondCardEdge.equals(otherSecondCardOppositeEdge)) {
-				return false;
-			}
-		}
-		return true;
+		Test2By1Grid rotatedCloneOfMyself = mirrorCopy();
+		return otherGrid.equals(rotatedCloneOfMyself);
+	}
+
+	/**
+	 * Create a mirrored copy of myself.
+	 * 
+	 * @return Exactly this Grid, only turned around once.
+	 */
+	private Test2By1Grid mirrorCopy() {
+		Test2By1Grid rotatedCloneOfMyself = new Test2By1Grid(getOuterType());
+		rotatedCloneOfMyself.putOntoNextFreePositionSuccessful(this.secondCard, Orientation.SOUTH);
+		rotatedCloneOfMyself.putOntoNextFreePositionSuccessful(this.firstCard, Orientation.SOUTH);
+		return rotatedCloneOfMyself;
 	}
 
 	@SuppressWarnings("unchecked")
