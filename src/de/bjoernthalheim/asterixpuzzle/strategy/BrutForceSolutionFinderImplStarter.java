@@ -26,19 +26,15 @@ public class BrutForceSolutionFinderImplStarter extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		BruteForceSolutionFinderImpl impl = new BruteForceSolutionFinderImpl();
 		// init deck, grid and empty solution list.
-		Deck deck = new DeckCreator().createNewDeck();
+		Deck deck = new DisplayableDeckCreator().createNewDeck();
 		DisplayableCardGrid grid = new ThreeTimesThreeCardGrid();
 		List<DisplayableCardGrid> allSolutions = new ArrayList<DisplayableCardGrid>();
 		// recursion start.
 		impl.findAllSolutions(allSolutions, deck, grid);
 		// find really distinct solutions
 		List<DisplayableCardGrid> solutions = impl.removeIsomorphicSolutions(allSolutions);
-		// Solution presentation.
-		System.out.println(solutions.size() + " solutions found: ");
-		// As long as we don't have a graphical representation, we need to output this stuff somehow
+		// Graphical output
 		for (DisplayableCardGrid solution : solutions) {
-			System.out.println(solution);
-			// JavaFX stuff
 			Scene scene = new SolutionJFXVisualizer(solution).createRootAndScene();
 			primaryStage.setTitle("Asterix Puzzle Solution");
 			primaryStage.setScene(scene);

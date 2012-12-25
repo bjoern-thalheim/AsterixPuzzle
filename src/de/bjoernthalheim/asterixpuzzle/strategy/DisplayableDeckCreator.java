@@ -9,7 +9,7 @@ import de.bjoernthalheim.asterixpuzzle.solution.DisplayableCardImpl;
  * 
  * @author bjoern
  */
-public class DeckCreator {
+public class DisplayableDeckCreator {
 
 	/**
 	 * Creates the deck depicted in allCards.jpg.
