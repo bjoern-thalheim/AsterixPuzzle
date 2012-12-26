@@ -49,11 +49,6 @@ public class DisplayableCardImpl extends CardImpl implements DisplayableCard {
 	}
 
 	@Override
-	public int hashCode() {
-		return super.hashCode();
-	}
-
-	@Override
 	public boolean equals(Object obj) {
 		return super.equals(obj);
 	}

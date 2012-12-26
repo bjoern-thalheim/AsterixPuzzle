@@ -49,10 +49,6 @@ public class CardImpl implements Card {
 		}
 	}
 
-	private CardImpl() {
-		edges = new HashMap<Orientation, FigureAndHalf>();
-	}
-
 	public CardImpl(Card card, Orientation rotation) {
 		// create a clone of the given Card with the given Orientation.
 		edges = new HashMap<Orientation, FigureAndHalf>();

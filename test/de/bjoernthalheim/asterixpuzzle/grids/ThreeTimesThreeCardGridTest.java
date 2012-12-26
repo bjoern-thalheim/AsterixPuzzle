@@ -1,6 +1,6 @@
 package de.bjoernthalheim.asterixpuzzle.grids;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +9,6 @@ import de.bjoernthalheim.asterixpuzzle.deck.BlankCard;
 import de.bjoernthalheim.asterixpuzzle.deck.Card;
 import de.bjoernthalheim.asterixpuzzle.deck.CardImpl;
 import de.bjoernthalheim.asterixpuzzle.elements.Orientation;
-import de.bjoernthalheim.asterixpuzzle.grids.ThreeTimesThreeCardGrid;
 
 public class ThreeTimesThreeCardGridTest {
 
@@ -20,8 +19,16 @@ public class ThreeTimesThreeCardGridTest {
 		this.grid = new ThreeTimesThreeCardGrid();
 	}
 
+	@Test
+	public void testPutNextCardUnsuccessful() {
+		Card card = new CardImpl("atatatat");
+		assertTrue(this.grid.putOntoNextFreePositionSuccessful(card, Orientation.NORTH));
+		assertFalse(this.grid.putOntoNextFreePositionSuccessful(card, Orientation.NORTH));
+	}
+
 	/**
-	 * Since we are using {@link ThreeTimesThreeCardGrid#putOntoNextFreePositionSuccessful(Card, Orientation)} to create a defensive copy of an existing grid, and
+	 * Since we are using {@link ThreeTimesThreeCardGrid#putOntoNextFreePositionSuccessful(Card, Orientation)} to create a
+	 * defensive copy of an existing grid, and
 	 * {@link ThreeTimesThreeCardGrid#putOntoNextFreePositionSuccessful(Card, Orientation)} validates that everything fits,
 	 * {@link ThreeTimesThreeCardGrid#defensiveCopy()} could throw an exeption if something goes wrong.
 	 */
