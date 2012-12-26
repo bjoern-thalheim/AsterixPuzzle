@@ -19,3 +19,17 @@ The Idea of the brute force solution algorithm is that I start with a deck of al
 - put the card into the next free position in the grid
 - if no conflicts are in the grid, recurse further
 - if the grid is full, add this configuration to the list of solutions.
+
+Open "Problems"
+---------------
+
+First, I can say that I ran into the equals-Hell with the CardImpl, DisplayableCardImpl and BlankCard.
+If I remember it right, this equals-asymetry is quite characteristic. Any way, I might have another close look with test cases onto these equals-methods.
+Luckily, all my test cases discovered these problems.
+Another construction site can be the the Generics stuff in Card/DisplayableCard and their implementations. The src-sourcefolder should only reference Interfaces, no implementations.
+On the other hand, it works, so there is no real reason to do anything.
+
+Ideas
+-----
+
+It might be a cool idea to improve the graphical stuff a little where one could first show the cards, then press a button to calculate the solution and then show the solution. 
