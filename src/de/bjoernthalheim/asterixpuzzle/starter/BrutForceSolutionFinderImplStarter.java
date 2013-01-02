@@ -3,11 +3,18 @@ package de.bjoernthalheim.asterixpuzzle.starter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.webpane.webkit.unicode.TextNormalizer;
+
 import javafx.application.Application;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import de.bjoernthalheim.asterixpuzzle.deck.Deck;
 import de.bjoernthalheim.asterixpuzzle.deck.DisplayableDeckCreator;
+import de.bjoernthalheim.asterixpuzzle.deck.UnorderedDisplayableCardGrid;
 import de.bjoernthalheim.asterixpuzzle.grids.DisplayableCardGrid;
 import de.bjoernthalheim.asterixpuzzle.grids.ThreeTimesThreeCardGrid;
 import de.bjoernthalheim.asterixpuzzle.jfx.SolutionJFXVisualizer;
@@ -39,8 +46,19 @@ public class BrutForceSolutionFinderImplStarter extends Application {
 	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		List<DisplayableCardGrid> solutions = calculatePuzzleResult();
 		// Graphical output
+		primaryStage.setTitle("Asterix Puzzle Solution");
+		StackPane root = new StackPane();
+		Text temporaryText = new Text();
+		temporaryText.setText("Calculating Solution");
+		root.getChildren().add(temporaryText);
+		Scene emptyScene = new Scene(root);
+		primaryStage.setScene(emptyScene);
+		DisplayableCardGrid nosolution = new UnorderedDisplayableCardGrid(new DisplayableDeckCreator().createNewDeck());
+		showSolutionGraphically(primaryStage, nosolution );
+		primaryStage.show();
+		
+		List<DisplayableCardGrid> solutions = calculatePuzzleResult();
 		for (DisplayableCardGrid solution : solutions) {
 			showSolutionGraphically(primaryStage, solution);
 		}
@@ -48,9 +66,7 @@ public class BrutForceSolutionFinderImplStarter extends Application {
 
 	private void showSolutionGraphically(Stage primaryStage, DisplayableCardGrid solution) {
 		Scene scene = new SolutionJFXVisualizer(solution).createRootAndScene();
-		primaryStage.setTitle("Asterix Puzzle Solution");
 		primaryStage.setScene(scene);
-		primaryStage.show();
 	}
 
 	private List<DisplayableCardGrid> calculatePuzzleResult() {
