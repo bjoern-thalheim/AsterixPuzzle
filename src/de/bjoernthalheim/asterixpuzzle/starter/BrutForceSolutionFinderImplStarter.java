@@ -6,7 +6,6 @@ import java.util.List;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import de.bjoernthalheim.asterixpuzzle.deck.Deck;
 import de.bjoernthalheim.asterixpuzzle.deck.DisplayableDeckCreator;
@@ -46,12 +45,6 @@ public class BrutForceSolutionFinderImplStarter extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		// Graphical output
 		primaryStage.setTitle("Asterix Puzzle Solution");
-		StackPane root = new StackPane();
-		Text temporaryText = new Text();
-		temporaryText.setText("Calculating Solution");
-		root.getChildren().add(temporaryText);
-		Scene emptyScene = new Scene(root);
-		primaryStage.setScene(emptyScene);
 		DisplayableCardGrid nosolution = new UnorderedDisplayableCardGrid(new DisplayableDeckCreator().createNewDeck());
 		showSolutionGraphically(primaryStage, nosolution);
 		primaryStage.show();
@@ -61,8 +54,8 @@ public class BrutForceSolutionFinderImplStarter extends Application {
 		}
 	}
 
-	public Scene createRootAndScene(DisplayableCardGrid solution) {
-		StackPane root = new SolutionJFXVisualizer(solution).getCardsToDisplay();
+	private void showSolutionGraphically(Stage primaryStage, DisplayableCardGrid solution) {
+		StackPane root = createRootAndScene(solution);
 		// @formatter:off
 		Scene scene = new Scene(
 				root, 
@@ -70,12 +63,12 @@ public class BrutForceSolutionFinderImplStarter extends Application {
 				SolutionJFXVisualizer.GRID_EDGE_LENGTH * CARD_DISPLAY_WIDTH
 		);
 		// @formatter:on
-		return scene;
+		primaryStage.setScene(scene);
 	}
 
-	private void showSolutionGraphically(Stage primaryStage, DisplayableCardGrid solution) {
-		Scene scene = createRootAndScene(solution);
-		primaryStage.setScene(scene);
+	public StackPane createRootAndScene(DisplayableCardGrid solution) {
+		StackPane root = new SolutionJFXVisualizer(solution).getCardsToDisplay();
+		return root;
 	}
 
 	private List<DisplayableCardGrid> calculatePuzzleResult() {
