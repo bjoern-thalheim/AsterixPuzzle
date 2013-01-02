@@ -26,7 +26,8 @@ Open "Problems"
 First, I can say that I ran into the equals-Hell with the CardImpl, DisplayableCardImpl and BlankCard.
 If I remember it right, this equals-asymetry is quite characteristic. Any way, I might have another close look with test cases onto these equals-methods.
 Luckily, all my test cases discovered these problems.
-Another construction site can be the the Generics stuff in Card/DisplayableCard and their implementations. The src-sourcefolder should only reference Interfaces, no implementations.
+Another construction site can be the the Generics stuff in Card/DisplayableCard and their implementations.
+The src-sourcefolder should only reference Interfaces, no implementations.
 On the other hand, it works, so there is no real reason to do anything.
 
 Ideas

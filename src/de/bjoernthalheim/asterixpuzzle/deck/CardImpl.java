@@ -112,17 +112,12 @@ public class CardImpl implements Card {
 			return true;
 		if (obj == null)
 			return false;
-//		if (getClass() != obj.getClass())
-//			return false;
-		CardImpl other = (CardImpl) obj;
-		if (edges == null) {
-			if (other.edges != null)
+		if (!(obj instanceof Card))
+			return false;
+		Card other = (Card) obj;
+		for (Orientation orientation : Orientation.values()) {
+			if (!other.getEdge(orientation).equals(this.getEdge(orientation))) {
 				return false;
-		} else {
-			for (Orientation orientation : Orientation.values()) {
-				if (!other.getEdge(orientation).equals(this.getEdge(orientation))) {
-					return false;
-				}
 			}
 		}
 		return true;

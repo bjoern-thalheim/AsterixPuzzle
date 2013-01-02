@@ -182,7 +182,7 @@ public class ThreeTimesThreeCardGrid implements DisplayableCardGrid {
 			// 0 3 6
 			return Arrays.asList(2, 5, 8, 1, 4, 7, 0, 3, 6);
 		}
-		throw new RuntimeException(orientation + " has not been anticipated here.");
+		throw new IllegalArgumentException(orientation + " has not been anticipated here.");
 	}
 
 	@Override
