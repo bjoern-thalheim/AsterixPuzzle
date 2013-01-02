@@ -3,11 +3,7 @@ package de.bjoernthalheim.asterixpuzzle.starter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.webpane.webkit.unicode.TextNormalizer;
-
 import javafx.application.Application;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -27,6 +23,8 @@ import de.bjoernthalheim.asterixpuzzle.strategy.BruteForceSolutionFinderImpl;
  * @author bjoern
  */
 public class BrutForceSolutionFinderImplStarter extends Application {
+
+	private static final int CARD_DISPLAY_WIDTH = 150;
 
 	/**
 	 * Start of the JavaFX application as it is shown in the tutorials.
@@ -55,17 +53,28 @@ public class BrutForceSolutionFinderImplStarter extends Application {
 		Scene emptyScene = new Scene(root);
 		primaryStage.setScene(emptyScene);
 		DisplayableCardGrid nosolution = new UnorderedDisplayableCardGrid(new DisplayableDeckCreator().createNewDeck());
-		showSolutionGraphically(primaryStage, nosolution );
+		showSolutionGraphically(primaryStage, nosolution);
 		primaryStage.show();
-		
 		List<DisplayableCardGrid> solutions = calculatePuzzleResult();
 		for (DisplayableCardGrid solution : solutions) {
 			showSolutionGraphically(primaryStage, solution);
 		}
 	}
 
+	public Scene createRootAndScene(DisplayableCardGrid solution) {
+		StackPane root = new SolutionJFXVisualizer(solution).getCardsToDisplay();
+		// @formatter:off
+		Scene scene = new Scene(
+				root, 
+				SolutionJFXVisualizer.GRID_EDGE_LENGTH * CARD_DISPLAY_WIDTH, 
+				SolutionJFXVisualizer.GRID_EDGE_LENGTH * CARD_DISPLAY_WIDTH
+		);
+		// @formatter:on
+		return scene;
+	}
+
 	private void showSolutionGraphically(Stage primaryStage, DisplayableCardGrid solution) {
-		Scene scene = new SolutionJFXVisualizer(solution).createRootAndScene();
+		Scene scene = createRootAndScene(solution);
 		primaryStage.setScene(scene);
 	}
 

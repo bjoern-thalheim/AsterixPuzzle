@@ -2,7 +2,6 @@ package de.bjoernthalheim.asterixpuzzle.jfx;
 
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -12,27 +11,15 @@ import de.bjoernthalheim.asterixpuzzle.grids.DisplayableCardGrid;
 
 public class SolutionJFXVisualizer {
 
-	private static final int GRID_EDGE_LENGTH = 3;
-	private static final int CARD_DISPLAY_WIDTH = 150;
+	public static final int GRID_EDGE_LENGTH = 3;
+	
 	private DisplayableCardGrid solution;
 
 	public SolutionJFXVisualizer(DisplayableCardGrid solution) {
 		this.solution = solution;
 	}
 
-	public Scene createRootAndScene() {
-		StackPane root = createRootWithChildren();
-		// @formatter:off
-		Scene scene = new Scene(
-				root, 
-				GRID_EDGE_LENGTH * CARD_DISPLAY_WIDTH, 
-				GRID_EDGE_LENGTH * CARD_DISPLAY_WIDTH
-		);
-		// @formatter:on
-		return scene;
-	}
-
-	private StackPane createRootWithChildren() {
+	public StackPane getCardsToDisplay() {
 		StackPane root = new StackPane();
 		ObservableList<Node> children = root.getChildren();
 		VBox box = createBox();
