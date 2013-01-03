@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import de.bjoernthalheim.asterixpuzzle.deck.Deck;
 import de.bjoernthalheim.asterixpuzzle.deck.DisplayableDeckCreator;
@@ -23,6 +26,7 @@ import de.bjoernthalheim.asterixpuzzle.strategy.BruteForceSolutionFinderImpl;
  */
 public class BrutForceSolutionFinderImplStarter extends Application {
 
+	private static final int GAP_WIDTH = 100;
 	private static final int CARD_DISPLAY_WIDTH = 150;
 
 	/**
@@ -45,25 +49,53 @@ public class BrutForceSolutionFinderImplStarter extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		// Graphical output
 		primaryStage.setTitle("Asterix Puzzle Solution");
-		DisplayableCardGrid nosolution = new UnorderedDisplayableCardGrid(new DisplayableDeckCreator().createNewDeck());
-		showSolutionGraphically(primaryStage, nosolution);
-		primaryStage.show();
+		HBox hbox = new HBox();
+		addNoSolutionGridToHBox(hbox);
 		List<DisplayableCardGrid> solutions = calculatePuzzleResult();
+		createAndShowScene(primaryStage, hbox, solutions.size());
 		for (DisplayableCardGrid solution : solutions) {
-			showSolutionGraphically(primaryStage, solution);
+			Node solutionRoot = createRootAndScene(solution);
+			addToChildren(hbox, createGap());
+			addToChildren(hbox, solutionRoot);
 		}
 	}
 
-	private void showSolutionGraphically(Stage primaryStage, DisplayableCardGrid solution) {
-		StackPane root = createRootAndScene(solution);
+	private Node createGap() {
+		return new Rectangle(GAP_WIDTH, CARD_DISPLAY_WIDTH * SolutionJFXVisualizer.GRID_EDGE_LENGTH);
+	}
+
+	private void addToChildren(HBox hbox, Node solutionRoot) {
+		hbox.getChildren().add(solutionRoot);
+	}
+
+	private void addNoSolutionGridToHBox(HBox hbox) {
+		DisplayableCardGrid nosolution = new UnorderedDisplayableCardGrid(new DisplayableDeckCreator().createNewDeck());
+		StackPane noSolutionRoot = createRootAndScene(nosolution);
+		addToChildren(hbox, noSolutionRoot);
+	}
+
+	private void createAndShowScene(Stage primaryStage, HBox hbox, int numberofsolutions) {
+		StackPane root = new StackPane();
+		root.getChildren().add(hbox);
 		// @formatter:off
 		Scene scene = new Scene(
 				root, 
-				SolutionJFXVisualizer.GRID_EDGE_LENGTH * CARD_DISPLAY_WIDTH, 
+				calculateWindowWidth(numberofsolutions), 
 				SolutionJFXVisualizer.GRID_EDGE_LENGTH * CARD_DISPLAY_WIDTH
 		);
 		// @formatter:on
 		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+
+	private int calculateWindowWidth(int numberofsolutions) {
+		// @formatter:off
+		int result = 
+				(numberofsolutions + 1) // +1 because we display the unordered cards and all solutions
+				* SolutionJFXVisualizer.GRID_EDGE_LENGTH * CARD_DISPLAY_WIDTH // single grid width
+				+ (numberofsolutions * GAP_WIDTH); // gaps in front of each solution.
+		// @formatter:on
+		return result;
 	}
 
 	public StackPane createRootAndScene(DisplayableCardGrid solution) {
