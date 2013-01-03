@@ -10,7 +10,7 @@ import de.bjoernthalheim.asterixpuzzle.deck.Deck;
 public class DisplayableDeckCreator {
 
 	/**
-	 * Creates the deck depicted in allCards.jpg.
+	 * Creates the deck depicted by the cards which I scanned in.
 	 * 
 	 * @return The Deck of cards.
 	 */
