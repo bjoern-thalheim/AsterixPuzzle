@@ -30,7 +30,7 @@ Another construction site can be the the Generics stuff in Card/DisplayableCard 
 The src-sourcefolder should only reference Interfaces, no implementations.
 On the other hand, it works, so there is no real reason to do anything.
 
-Ideas
------
+Graphical representation
+------------------------
 
-It might be a cool idea to improve the graphical stuff a little where one could first show the cards, then press a button to calculate the solution and then show the solution. 
+I decided that I'm happy already with the brute force solution, so my last step in this project was to scan in the original cards and graphically represent the original cards (unorderd) and the properly ordered solution. If you just execute de.bjoernthalheim.asterixpuzzle.starter.BrutForceSolutionFinderImplStarter, you'll see that in action. 
